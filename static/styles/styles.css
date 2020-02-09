@@ -308,3 +308,9 @@ td.blue strong
 #cockpitLink {
     float: left;
 }
+
+#contentArea h1 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 3em;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html lang="de">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <head>
+    <title>{{ .Title }}</title>
+    <meta name="DC.Description" content="Das Energieversorgungsunternehmen Elektrizitätsgesellschaft Levern e.G. ist im Ortsteil Levern der Gemeinde Stemwede Grundversorger für Strom.">
+    <meta name="DC.Subject" content="Stemwede, Levern, Energie, Strom, Elektrizität, Energieversorger, Unternehmen">
+
+    <link href="/styles/styles.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/styles/print.css" type="text/css" rel="stylesheet" media="print">
+  </head>
+  <body >
+    <!-- SiteFrame -->
+    <div id="cockpitNavigation">
+      <DIV id="cockpit" style="FLOAT: right">
+        <DIV id="cockpitLink"><A href="/desktopdefault.aspx/tabid-604.html">Impressum</A></DIV>
+        <DIV id="cockpitLink"><A href="/desktopdefault.aspx/datenschutz.html">Datenschutz</A></DIV>
+        <DIV id="cockpitLink"><A href="mailto:e-gesellschaft@t-online.de">Kontakt</A></DIV>
+        <DIV id="cockpitLink"><A href="/desktopdefault.aspx/tabid-529.html">Home</A></DIV></div>
+    </div>
+    <div id="page">
+
+      <div id="head" style="background-image: url(/images/{{ .Params.header_image }});"></div>
+
+      <div id="pageNav">
+        <div id="ctl00_navigation">
+          <A class="nav" href="/">Home</A>
+          <SPAN id="navSpacer"> | </SPAN>
+          <A class="nav" href="/strom/">Strom</A>
+          <SPAN id="navSpacer"> | </SPAN>
+          <A class="nav" href="/stromtarife/">Stromtarife</A>
+          <SPAN id="navSpacer"> | </SPAN>
+          <A class="nav" href="/kontaktdatenblatt/">Kontaktdatenblatt</A>
+          <SPAN id="navSpacer"> | </SPAN>
+          <A class="nav" href="/satzung/">Satzung</A>
+		      <SPAN id="navSpacer"> | </SPAN>
+			    <A class="nav" href="/jubilaeum/">100 Jahre EG-Levern</A>
+        </div>
+      </div>
+
+      <div id="contentArea">
+        <div class="standartFont">
+          <div id="ctl00_contentPane">
+            {{ block "content" . }} {{ end }}
+          </div>
+	      </div>
+      </div>
+    </div>
+  </body>
+</html>
