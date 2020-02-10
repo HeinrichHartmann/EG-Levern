@@ -8,4 +8,4 @@ header_image : "header6.jpg"
 * [Strukturmerkmale Grundversorger](grundversorger/)
 * [Stromkennzeichnung (Energiemix) gemäß EnWG](kennzeichnung/)
 * [Produktinformationen](information/)
-* [Rechtliches](/desktopdefault.aspx/tabid-600.html)
+* [Rechtliches](rechtliches/)

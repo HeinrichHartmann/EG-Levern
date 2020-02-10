@@ -8,5 +8,5 @@ header_image : "header1.jpg"
 
 # Stromtarife
 
-* [Stromtarife 2020](/desktopdefault.aspx/eglevern2020.html)
-* [Stromtarife 2019](/desktopdefault.aspx/eglevern2019.html)
+* [Stromtarife 2020](2020/)
+* [Stromtarife 2019](2019/)
