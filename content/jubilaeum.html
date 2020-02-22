@@ -6,28 +6,75 @@ type: "page"
 header_image : "header1.jpg"
 ---
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <style>
-  .fancybox-gallery {
-		text-align: center;
-	}
+  /* The grid: Four equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 3px;
+    box-sizing: border-box;
+  }
 
-	#ctl00_contentPane .fancybox-gallery a {
-		display: inline-block;
-	}
+  /* Style the images inside the grid */
+  .column img {
+    width: 100%;
+    padding: 3px;
+    cursor: pointer;
+    box-sizing: content-box;
+  }
 
-	#ctl00_contentPane .fancybox-gallery a img {
-		height: 300px;
-		width: auto;
-	}
+  .column img:hover {
+    opacity: 0.8;
+  }
 
-  .hideme {
-		display: none !important;
-	}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .lightbox {
+    display: none;
+    background: rgba(60, 60, 60, 0.85);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    z-index: 1;
+    overflow: auto;
+    /* -webkit-transform: scale(0); */
+    /* -ms-transform: scale(0); */
+    /* transform: scale(0); */
+    -webkit-transition: -webkit-transform .75s ease-out;
+    transition: transform .75s ease-out;
+  }
+
+  .lightbox img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+  }
 </style>
 
+<script>
+  function gallery_expand(imgs) {
+    // Get the expanded image
+    var expandImg = document.getElementById("gallery_img");
+    // Use the same src in the expanded image as the image being clicked on from the grid
+    expandImg.src = imgs.src;
+    // Show the container element (hidden with CSS)
+    expandImg.parentElement.style.display = "block";
+  }
+</script>
 
-<p><strong>JUBILÄUM – 100 Jahre Elektrizitätsgesellschaft Levern eG</strong><br /><br />
+<h1>JUBILÄUM – 100 Jahre Elektrizitätsgesellschaft Levern eG</h1>
 
 	Der beschauliche Ort Levern im nördlichen Westfalen feiert in diesem Jahr sein 1050-jähriges
 	Bestehen. </p>
@@ -45,23 +92,36 @@ header_image : "header1.jpg"
 	Schrankes bemalt. Erste Stromkästen wurden bereits im Mai fertiggestellt und sind im Ort zu
 	bewundern. </p>
 
-
-<div class="fancybox-gallery">
-	<a data-fancybox="gallery" href="/teaser-img/IMG_7367.JPG"><img src="/images/jubilaeum/IMG_7367.JPG"></a>
-	<a data-fancybox="gallery" href="/images/jubilaeum/IMG_7231.jpg"><img src="/images/jubilaeum/IMG_7231.jpg"></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7358.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7298.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7293.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7292.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7271.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7234.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_7121.JPG"><img src=""></a>
-	<a data-fancybox="gallery" class="hideme" href="/images/jubilaeum/IMG_6936.JPG"><img src=""></a>
+<div class="row">
+  <div class="column">
+    <img src="/images/jubilaeum/IMG_7367.JPG" onclick="gallery_expand(this)" >
+	  <img src="/images/jubilaeum/IMG_7293.JPG" onclick="gallery_expand(this)" >
+	  <img src="/images/jubilaeum/IMG_6936.JPG" onclick="gallery_expand(this)" >
+  </div>
+  <div class="column">
+	  <img src="/images/jubilaeum/IMG_7231.jpg" onclick="gallery_expand(this)" >
+	  <img src="/images/jubilaeum/IMG_7121.JPG" onclick="gallery_expand(this)" >
+  </div>
+  <div class="column">
+	  <img src="/images/jubilaeum/IMG_7358.JPG" onclick="gallery_expand(this)" >
+	  <img src="/images/jubilaeum/IMG_7271.JPG" onclick="gallery_expand(this)" >
+  </div>
+  <div class="column">
+	  <img src="/images/jubilaeum/IMG_7298.JPG" onclick="gallery_expand(this)" >
+	  <img src="/images/jubilaeum/IMG_7234.JPG" onclick="gallery_expand(this)" >
+  </div>
 </div>
+
+<div class="lightbox" onclick="this.style.display='none'">
+  <!-- Expanded image -->
+  <img id="gallery_img" onclick="this.parentElement.style.display='none'">
+</div>
+
 
 <p>Außerdem plant das Unternehmen die Beleuchtung der Leverner Windmühle anlässlich besonderer
 	Veranstaltungen und während der Advents- und Weihnachtszeit.</p>
-<p><strong><u>Zur Historie:</u></strong></p>
+
+<h2>Zur Historie</h2>
 
 <p>Die Elektrizitätsgesellschaft Levern eG mag heute unter deutschen Strom-Giganten bescheiden
 	erscheinen. Für Levern und seine Umgebung indessen ist dieses genossenschaftliche
@@ -153,10 +213,4 @@ header_image : "header1.jpg"
 	und aufgewachsen zu sein. Im Ort jedes Haus und jede Straße (in der Fachsprache
 	Marktlokation oder Zählpunkt) zu kennen, ist bei ihrer Arbeit von großem Vorteil.</p>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-$('[data-fancybox="gallery"]').fancybox({
-toolbar: false
-});
 </script>
