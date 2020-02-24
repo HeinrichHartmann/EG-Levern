@@ -10,7 +10,7 @@ header_image : "header1.jpg"
 Die örtliche Stromgenossenschaft – die Elektrizitätsgesellschaft Levern eG feiert am 31. August 2019
 ein Jubiläum und wird 100 Jahre alt. ...
 
-> [Zum Artikel](http://localhost:1313/jubilaeum/)
+> [Zum Artikel](/jubilaeum/)
 
 ## Netzbetreiberwechsel zum 01.01.2012
 
