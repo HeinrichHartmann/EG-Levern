@@ -3,6 +3,11 @@ title : "EG - Levern"
 header_image : "header1.jpg"
 ---
 
+# Neue Email Adresse: info@eg-levern.de
+
+<center>Ab sofort sind wir unter der neuen Email Adresse <a href="mailto:info@eg-levern.de">info@eg-levern.de</a> für Sie erriechbar.</center>
+
+
 # Elektrizitätsgesellschaft Levern eG
 
 - Gründungsjahr: 1919
@@ -46,4 +51,4 @@ Bei Interesse an einer Mitgliedschaft wenden Sie sich bitte an:
 > 32351 Stemwede-Levern  
 > Tel.: 05745/ 300082  
 > Fax: 05745/ 300083  
-> E-Mail:[e-gesellschaft@t-online.de](mailto:e-gesellschaft@t-online.de)
+> E-Mail:[info@eg-levern.de](mailto:info@eg-levern.de)
