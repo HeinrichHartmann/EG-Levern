@@ -7,17 +7,17 @@ header_image : "header7.jpg"
 
 **Strukturmerkmale des Grundversorgungsgebietes**
 
-1. **Strombezug im Jahr 2014:**  
-   ca. 4.500.000 Mio. kWh
+1. **Strombezug im Jahr 2021:**  
+   ca. 4.100.000 kWh
 
-2. **Anzahl Lieferstellen im Jahr 2014:**  
-   ca. 880
+2. **Anzahl Lieferstellen im Jahr 2021:**  
+   ca. 860
 
-3. **Einwohnerzahl im Grundversorgungsgebiet im Jahr 2014:**  
+3. **Einwohnerzahl im Grundversorgungsgebiet im Jahr 2021:**  
    ca. 2200
 
-4. **Versorgte Fläche im Grundversorgungsgebiet im Jahr 2014:**  
+4. **Versorgte Fläche im Grundversorgungsgebiet im Jahr 2021:**  
    11,9 km²
 
-5. **Geopgraphische Fläche des Grundversorgungsgebietes zum 31.12.2014:**  
+5. **Geopgraphische Fläche des Grundversorgungsgebietes zum 31.12.2021:**  
    11,9 km²

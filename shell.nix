@@ -12,5 +12,7 @@ mkShell {
     python3
     python3Packages.poetry
     nodejs
+    #
+    aws
   ];
 }
