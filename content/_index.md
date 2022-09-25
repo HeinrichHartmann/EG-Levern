@@ -5,7 +5,7 @@ header_image : "header1.jpg"
 
 # Neue Email Adresse: info@eg-levern.de
 
-<center>Ab sofort sind wir unter der neuen Email Adresse <a href="mailto:info@eg-levern.de">info@eg-levern.de</a> für Sie erriechbar.</center>
+<center>Ab sofort sind wir unter der neuen Email Adresse <a href="mailto:info@eg-levern.de">info@eg-levern.de</a> für Sie erreichbar.</center>
 
 
 # Elektrizitätsgesellschaft Levern eG
