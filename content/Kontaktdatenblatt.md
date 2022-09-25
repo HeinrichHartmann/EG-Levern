@@ -29,14 +29,18 @@ header_image : "header1.jpg"
 			<TD><STRONG>Tel.:</STRONG> 05745 300082 <BR><STRONG>Fax:</STRONG> 05745 300083
 				<BR><STRONG>E-Mail:</STRONG> info@eg-levern.de<BR><BR></TD>
 		</TR>
-
+		<TR>
 		<TD class=header>Marktkommunikation</TD>
 		<TD class=header>EDIFACT-Adresse</TD>
-</TR>
-<TR>
-	<TD>Lieferant<BR><BR><BR></TD>
-	<TD><STRONG>E-Mail:</STRONG> lev-ver@edi.stadtwerke-lingen.de <BR><BR><BR></TD>
-</TR>
+	</TR>
+	<TR>
+	<TD>Lieferant</TD>
+	<TD>
+	<STRONG>E-Mail:</STRONG> lev-ver@edi.stadtwerke-lingen.de <BR>
+	<STRONG>EDIFACT Zertifikat:</STRONG> <a href="/cert/2022-09-25-eg-levern.partin.zip">PATIN</a> <br><br><BR>
+	</TD>
+	</TR>
+
 
 <TR>
 	<TD class=header colSpan=2>Fachlicher Ansprechpartner UTILMD-Lieferantenwechsel
