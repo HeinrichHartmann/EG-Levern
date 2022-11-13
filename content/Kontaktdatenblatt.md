@@ -6,85 +6,93 @@ type: "page"
 header_image : "header1.jpg"
 ---
 
-<DIV class=headFont>Kontaktdatenblatt</DIV>
-<BR>
-<BR>
-<TABLE style="WIDTH: 100%; MARGIN-LEFT: 0px" border=0 cellSpacing=0 cellPadding=0>
-	<TBODY>
-		<TR>
-			<TD class=header colSpan=2>Vertragswesen</TD>
-		</TR>
-		<TR>
-			<TD>Elektrizitätsgesellschaft Levern eG<BR>Heidi Helmich<BR>Osterland 2<BR>32351
-				Stemwede-Levern<BR><BR></TD>
-			<TD><STRONG>Tel.:</STRONG> 05745 300082 <BR><STRONG>Fax:</STRONG> 05745 300083
-				<BR><STRONG>E-Mail:</STRONG> info@eg-levern.de<BR><BR></TD>
-		</TR>
-		<TR>
-			<TD class=header colSpan=2>Vertrieb</TD>
-		</TR>
-		<TR>
-			<TD>Elektrizitätsgesellschaft Levern eG<BR>Heidi Helmich<BR>Osterland 2<BR>32351
-				Stemwede-Levern<BR><BR></TD>
-			<TD><STRONG>Tel.:</STRONG> 05745 300082 <BR><STRONG>Fax:</STRONG> 05745 300083
-				<BR><STRONG>E-Mail:</STRONG> info@eg-levern.de<BR><BR></TD>
-		</TR>
-		<TR>
-		<TD class=header>Marktkommunikation</TD>
-		<TD class=header>EDIFACT-Adresse</TD>
-	</TR>
-	<TR>
-	<TD>Lieferant</TD>
-	<TD>
-	<STRONG>E-Mail:</STRONG> lev-ver@edi.stadtwerke-lingen.de <BR>
-	<STRONG>EDIFACT Zertifikat:</STRONG> <a href="/cert/2022-09-25-eg-levern.partin.zip">EG-Levern.partin.zip</a> <br><br><BR>
-	</TD>
-	</TR>
+<style>
+table {
+width:100%;
+}
+
+td {
+	width: 50%;
+}
+
+h2 {
+	padding: 8px 4px 2px 4px;
+	background: #7A8AB7;
+	color: white;
+}
+</style>
 
 
-<TR>
-	<TD class=header colSpan=2>Fachlicher Ansprechpartner UTILMD-Lieferantenwechsel
-		(Vertrieb)</TD>
-</TR>
-<TR>
-	<TD>Stadtwerke Lingen GmbH<BR>Waldstraße 31<BR>49808 Lingen/Ems<BR>Herr Matthias
-		Klöckner <BR><BR><BR></TD>
-	<TD><STRONG>Tel.:</STRONG> 05 91/9 12 00 - 113<BR><STRONG>Fax:</STRONG> 05 91/9 12
-		00 - 9113 <BR><STRONG>E-Mail:</STRONG>
-		matthias.kloeckner@stadtwerke-lingen.de<BR><BR><BR></TD>
-</TR>
-<TR>
-	<TD class=header colSpan=2>Unternehmensdaten</TD>
-</TR>
-<TR>
-	<TD><STRONG>Bankverbindung</STRONG><BR>Sparkasse Minden-Lübbecke<BR>Leverner Str.
-		39<BR>32351 Stemwede-Levern<BR><BR></TD>
-	<TD><BR><BR>Konto Nr. 10006898 <BR>BLZ 490 501 01 <BR>IBAN Nr.
-		DE20490501010010006898 <BR>BIC WELADED1MIN<BR><BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>Genossenschaftsregister-Nr.</STRONG><BR></TD>
-	<TD>Gen.R. Nr. 135 <BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>Steuer-Nr.</STRONG><BR></TD>
-	<TD>331/5707/0099<BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>USt.-Id.-Nr.</STRONG><BR></TD>
-	<TD>DE 125 750 469<BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>EIC-Code</STRONG><BR></TD>
-	<TD>11YR00000002391G<BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>Regelzone</STRONG><BR></TD>
-	<TD>10YDE-RWENET---I (Amprion GmbH)<BR></TD>
-</TR>
-<TR>
-	<TD><STRONG>BDEW-Code (Vertrieb)</STRONG><BR></TD>
-	<TD>9904292000003<BR></TD>
-</TR>
-</TBODY>
-</TABLE>
+# Kontaktdatenblatt
+
+## Anschrift
+
+|                                     |                           |
+|-------------------------------------|---------------------------|
+| Elektrizitätsgesellschaft Levern eG | Tel.: 05745 300082        |
+| Heidi Helmich                       | Fax.: 05745 300083        |
+| Osterland 2                         | Email.: info@eg-levern.de |
+| 32351 Stemwede-Levern               | Web.:   eg-levern.de      |
+|                                     | USt.-Id.: DE 125 750 469  |
+
+## Vertragswesen
+
+|                                     |                           |
+|-------------------------------------|---------------------------|
+| Elektrizitätsgesellschaft Levern eG | Tel.: 05745 300082        |
+| Heidi Helmich                       | Fax.: 05745 300083        |
+| Osterland 2                         | Email.: info@eg-levern.de |
+| 32351 Stemwede-Levern               |                           |
+
+## An-/Abmeldung zur Netznutzung
+
+|                |                                            |
+|----------------|--------------------------------------------|
+| Name, Vorname  | Team Marktkommunikation                    |
+| Straße Hausnr. | Waldstraße 31                              |
+| PLZ Ort        | 49808 Lingen                               |
+| Telefon        | 0591-91200-113                             |
+| Fax            | 0591-91200-499                             |
+| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+
+## Messwerte
+
+|                |                                            |
+|----------------|--------------------------------------------|
+| Name, Vorname  | Team Marktkommunikation                    |
+| Straße Hausnr. | Waldstraße 31                              |
+| PLZ Ort        | 49808 Lingen                               |
+| Telefon        | 0591-91200-113                             |
+| Fax            | 0591-91200-499                             |
+| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+
+## Rechnungen
+
+|                |                                            |
+|----------------|--------------------------------------------|
+| Name, Vorname  | Team Marktkommunikation                    |
+| Straße Hausnr. | Waldstraße 31                              |
+| PLZ Ort        | 49808 Lingen                               |
+| Telefon        | 0591-91200-113                             |
+| Fax            | 0591-91200-499                             |
+| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+
+## Unternehmensdaten
+
+|                             |                                 |
+|-----------------------------|---------------------------------|
+| Bankverbindung              | Sparkasse Minden-Lübbecke       |
+|                             | Leverner Str. 39                |
+|                             | 32351 Stemwede-Levern           |
+|                             | IBAN: DE20490501010010006898    |
+|                             | BIC: WELADED1MIN                |
+| Genossenschaftsregister-Nr. | Gen.R. Nr. 135                  |
+| Steuer-Nr.                  | 331/5707/0099                   |
+| EIC-Code                    | 11YR00000002391G                |
+| Regelzone                   | 10YDE-RWENET---I (Amprion GmbH) |
+| BDEW-Code (Vertrieb)        | 9904292000003                   |
+
+## Informationen für Marktteilnehmer
+
+Weitere Informationen für Marktteilnehmer (nicht Endkunden) finden Sie [hier](/marktdaten/)
+
