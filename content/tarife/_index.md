@@ -8,5 +8,6 @@ header_image : "header1.jpg"
 
 # Stromtarife
 
+* [Stromtarife 2023](2023/)
 * [Stromtarife 2022](2022/)
 * [Stromtarife 2021](2021/)
