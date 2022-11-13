@@ -37,7 +37,7 @@ header_image : "header1.jpg"
 	<TD>Lieferant</TD>
 	<TD>
 	<STRONG>E-Mail:</STRONG> lev-ver@edi.stadtwerke-lingen.de <BR>
-	<STRONG>EDIFACT Zertifikat:</STRONG> <a href="/cert/2022-09-25-eg-levern.partin.zip">PATIN</a> <br><br><BR>
+	<STRONG>EDIFACT Zertifikat:</STRONG> <a href="/cert/2022-09-25-eg-levern.partin.zip">EG-Levern.partin.zip</a> <br><br><BR>
 	</TD>
 	</TR>
 
