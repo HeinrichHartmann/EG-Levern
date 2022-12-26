@@ -40,8 +40,8 @@ h2 {
 |                |                                                     |
 |----------------|-----------------------------------------------------|
 | Name, Vorname  | Elektrizitätsgesellschaft Levern eG - Heidi Helmich |
-| Straße Hausnr. | Ostreland 2                                         |
-| PLZ Ort        | 32351 Stemwede Levern                               |
+| Straße Hausnr. | Osterland 2                                         |
+| PLZ Ort        | 32351 Stemwede-Levern                               |
 | E-Mail         | eg-levern@edikoo.com                                |
 | Telefon        | 05403 / 3300-397                                    |
 
