@@ -11,8 +11,8 @@ table {
 width:100%;
 }
 
-td {
-	width: 50%;
+td:first-child {
+	width: 20em;
 }
 
 h2 {
@@ -27,28 +27,40 @@ h2 {
 
 ## Marktrolle
 
-|            |                                                           |
-|------------|-----------------------------------------------------------|
-| Marktrolle | BDEW-Codenummern/ <br> Global Location Number (GLN) Strom |
-| Lieferant  | 9904292000003                                             |
+|                    |                                                           |
+|--------------------|-----------------------------------------------------------|
+| Marktrolle         | BDEW-Codenummern/ <br> Global Location Number (GLN) Strom |
+| Lieferant          | 9904292000003                                             |
+| EDIFACT Zertifikat | [EG-Levern.zip](/cert/2022-12-25-eg-levern.zip)           |
 
-## Marktkommunikation
+## Elektronischer Datenaustausch/Formate, Verschlüsselung/Signatur
 
-|                                                                               |                                                                            |
-|-------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| Lieferant                                                                     | E-Mail: lev-ver@edi.stadtwerke-lingen.de                                   |
-|                                                                               | EDIFACT Zertifikat: [EG-Levern.zip](/cert/2022-09-25-eg-levern.partin.zip) |
-| E-Mail-Adresse für den elektronischen Datenaustausch (1:1 Marktkommunikation) | lev-ver@edi.stadtwerke-lingen.de                                           |
+|                |                                               |
+|----------------|-----------------------------------------------|
+| Name, Vorname  | edikoo GmbH & Co.KG - Team Marktkommunikation |
+| Straße Hausnr. | Schloßstraße 7                                |
+| PLZ Ort        | 49186 Bad Iburg                               |
+| Telefon        | 05403 / 3300-397                              |
+| E-Mail         | eg-levern@edikoo.com                          |
 
-## Bilanzkkreismanagement E.ON Energie Deutschland GmbH 
+## Bilanzkreismanagement
 
-|            |                                                           |
-|------------|-----------------------------------------------------------|
-| BDEW-Codenummer        | 9903829000006              |
-| Bilanzkreis (EIC-Code) | 11XRWEWWE-8001H3           |
-| Name, Vorname          | Team Bilanzkreismanagement |
-| Straße Hausnr.         | Arnulfstr. 203             |
-| PLZ Ort                | 80634 München              |
-| Telefon                | +49 89 12544422            |
-| Fax                    | +49 89 125429294422        |
-| E-Mail                 | edg-bk-struktur@eon.com    |
+|                        |                                                           |
+|------------------------|-----------------------------------------------------------|
+| Bilanzkreis (EIC-Code) | 11XRWEWWE-8001H3                                          |
+| Name, Vorname          | E.ON Energie Deutschand GmbH - Team Bilanzkreismanagement |
+| Straße Hausnr.         | Arnulfstr. 203                                            |
+| PLZ Ort                | 50634 München                                             |
+| Telefon                | 089 / 1254422                                             |
+| Fax                    | 089 / 125429294422                                        |
+| E-Mail                 | edg-bk-struktur@eon.com                                   |
+
+## Sonstige Ansprechpartner / Austausch von Zertifikaten
+
+|                |                        |
+|----------------|------------------------|
+| Name, Vorname  | edikoo GmbH & Co.KG    |
+| Straße Hausnr. | Schloßstraße 7         |
+| PLZ Ort        | 49186 Bad Iburg        |
+| Telefon        | 05403 / 3300-397       |
+| E-Mail         | zertifikate@edikoo.com |

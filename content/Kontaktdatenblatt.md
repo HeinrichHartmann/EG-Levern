@@ -11,8 +11,8 @@ table {
 width:100%;
 }
 
-td {
-	width: 50%;
+td:first-child {
+	width: 20em;
 }
 
 h2 {
@@ -35,47 +35,45 @@ h2 {
 | 32351 Stemwede-Levern               | Web.:   eg-levern.de      |
 |                                     | USt.-Id.: DE 125 750 469  |
 
-## Vertragswesen
+## Vertragsmanagement
 
-|                                     |                           |
-|-------------------------------------|---------------------------|
-| Elektrizitätsgesellschaft Levern eG | Tel.: 05745 300082        |
-| Heidi Helmich                       | Fax.: 05745 300083        |
-| Osterland 2                         | Email.: info@eg-levern.de |
-| 32351 Stemwede-Levern               |                           |
+|                |                                                     |
+|----------------|-----------------------------------------------------|
+| Name, Vorname  | Elektrizitätsgesellschaft Levern eG - Heidi Helmich |
+| Straße Hausnr. | Ostreland 2                                         |
+| PLZ Ort        | 32351 Stemwede Levern                               |
+| E-Mail         | eg-levern@edikoo.com                                |
+| Telefon        | 05403 / 3300-397                                    |
 
-## An-/Abmeldung zur Netznutzung
+## An-, Abmeldung zur Netznutzung / Kündigung (UTILMD)
 
-|                |                                            |
-|----------------|--------------------------------------------|
-| Name, Vorname  | Team Marktkommunikation                    |
-| Straße Hausnr. | Waldstraße 31                              |
-| PLZ Ort        | 49808 Lingen                               |
-| Telefon        | 0591-91200-113                             |
-| Fax            | 0591-91200-499                             |
-| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+|                |                                               |
+|----------------|-----------------------------------------------|
+| Name, Vorname  | edikoo GmbH & Co.KG - Team Marktkommunikation |
+| Straße Hausnr. | Schloßstraße 7                                |
+| PLZ Ort        | 49186 Bad Iburg                               |
+| E-Mail         | eg-levern@edikoo.com                          |
+| Telefon        | 05403 / 3300-397                              |
 
-## Messwerte
+## Messwerte (MSCONS)
 
-|                |                                            |
-|----------------|--------------------------------------------|
-| Name, Vorname  | Team Marktkommunikation                    |
-| Straße Hausnr. | Waldstraße 31                              |
-| PLZ Ort        | 49808 Lingen                               |
-| Telefon        | 0591-91200-113                             |
-| Fax            | 0591-91200-499                             |
-| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+|                |                                       |
+|----------------|---------------------------------------|
+| Name, Vorname  | edikoo GmbH & Co.KG - Team Abrechnung |
+| Straße Hausnr. | Schloßstraße 7                        |
+| PLZ Ort        | 49186 Bad Iburg                       |
+| Telefon        | 05403 / 3300-293                      |
+| E-Mail         | eg-levern@edikoo.com                  |
 
-## Rechnungen
+## Netznutzungsabrechnung/Rechnungseingangsprüfung (INVOIC, REMADV)
 
-|                |                                            |
-|----------------|--------------------------------------------|
-| Name, Vorname  | Team Marktkommunikation                    |
-| Straße Hausnr. | Waldstraße 31                              |
-| PLZ Ort        | 49808 Lingen                               |
-| Telefon        | 0591-91200-113                             |
-| Fax            | 0591-91200-499                             |
-| E-Mail         | datenaustausch-levern@stadtwerke-lingen.de |
+|                |                                                 |
+|----------------|-------------------------------------------------|
+| Name, Vorname  | edikoo GmbH & Co.KG - Team Forderungsmanagement |
+| Straße Hausnr. | Schloßstraße 7                                  |
+| PLZ Ort        | 49186 Bad Iburg                                 |
+| E-Mail         | eg-levern@edikoo.com                            |
+| Telefon        | 05403 / 3300-283                                |
 
 ## Unternehmensdaten
 
