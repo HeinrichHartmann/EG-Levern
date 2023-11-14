@@ -6,15 +6,9 @@ header_image : "header1.jpg"
 
 # Mitteilungen
 
-## 2022-10-01
+## 2023-11-14
 
-Aufgrund der explosiven Preisanstiege auf den Energiemärkten können wir aktuell
-keine Neukunden außerhalb unseres Grundversorgungsgebietes in Stemwede-Levern
-aufnehmen.
-
-## 2022-01-01
-
-Ab sofort sind wir unter der neuen Email Adresse <a href="mailto:info@eg-levern.de">info@eg-levern.de</a> für Sie erreichbar.
+Die gesetzlichen Vorgaben zur Umsetzung der Strompreisbremse gelten bis voraussichtlich zum 30. April 2024.
 
 # Elektrizitätsgesellschaft Levern eG
 
