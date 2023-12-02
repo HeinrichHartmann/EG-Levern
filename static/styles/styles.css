@@ -44,7 +44,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   font-family: verdana, arial;
   color: #19498b;
 }

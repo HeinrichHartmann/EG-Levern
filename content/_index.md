@@ -3,8 +3,12 @@ title : "EG - Levern"
 header_image : "header1.jpg"
 ---
 
-
 # Mitteilungen
+
+## 2023-12-02
+
+Nach dem [vorzeitigem Ende der Strompreisbremese](https://www.bundesregierung.de/breg-de/schwerpunkte/entlastung-fuer-deutschland/strompreisbremse-2125002) zum Ende des Jahres, arbeitet die E-Gesellschaft an einer Anpassung der Preise für 2024.
+Diese werden in Kürze bekannt gegeben.
 
 ## 2023-11-14
 
