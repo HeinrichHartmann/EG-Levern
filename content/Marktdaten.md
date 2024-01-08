@@ -45,15 +45,15 @@ h2 {
 
 ## Bilanzkreismanagement
 
-|                        |                                                           |
-|------------------------|-----------------------------------------------------------|
-| Bilanzkreis (EIC-Code) | 11XRWEWWE-8001H3                                          |
-| Name, Vorname          | E.ON Energie Deutschand GmbH - Team Bilanzkreismanagement |
-| Straße Hausnr.         | Arnulfstr. 203                                            |
-| PLZ Ort                | 50634 München                                             |
-| Telefon                | 089 / 1254422                                             |
-| Fax                    | 089 / 125429294422                                        |
-| E-Mail                 | edg-bk-struktur@eon.com                                   |
+|                        |                                                     |
+|------------------------|-----------------------------------------------------|
+| Bilanzkreis (EIC-Code) | 11X0-0000-0767-3                                    |
+| Name, Vorname          | Elektrizitätsgesellschaft Levern eG - Heidi Helmich |
+| Straße Hausnr.         | Osterland 2                                         |
+| PLZ Ort                | 32351 Stemwede-Levern                               |
+| Telefon                | 05745 / 300082                                      |
+| Fax                    | 05745 / 300083                                      |
+| E-Mail                 | BKV-eGLevern@ten-eg.de                              |
 
 ## Sonstige Ansprechpartner / Austausch von Zertifikaten
 

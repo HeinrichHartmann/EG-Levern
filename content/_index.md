@@ -5,14 +5,14 @@ header_image : "header1.jpg"
 
 # Mitteilungen
 
+## 2023-12-12
+
+[Information an die Verbraucher zur Senkung des Grundversorgungstarifes zum 01. Februar 2024](/pdf/2023-12-12-Information-zur-Senkung-des-Grundversorgungstarifes.pdf)
+
 ## 2023-12-02
 
 Nach dem [vorzeitigem Ende der Strompreisbremese](https://www.bundesregierung.de/breg-de/schwerpunkte/entlastung-fuer-deutschland/strompreisbremse-2125002) zum Ende des Jahres, arbeitet die E-Gesellschaft an einer Anpassung der Preise für 2024.
 Diese werden in Kürze bekannt gegeben.
-
-## 2023-11-14
-
-Die gesetzlichen Vorgaben zur Umsetzung der Strompreisbremse gelten bis voraussichtlich zum 30. April 2024.
 
 # Elektrizitätsgesellschaft Levern eG
 
