@@ -2,7 +2,7 @@ export AWS_SHARED_CREDENTIALS_FILE = ~/box/secrets/aws-credentials-hhcom
 
 .PHONY: serve
 serve:
-	hugo server -D --
+	hugo server -D --port 1314 --bind 0.0.0.0 --
 
 .PHONY: build
 build:

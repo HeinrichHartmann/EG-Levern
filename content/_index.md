@@ -5,6 +5,27 @@ header_image : "header1.jpg"
 
 # Mitteilungen
 
+## 2024-11-11
+
+### Wir senken zum 1. Januar 2025 unseren Allgemeinen Preis für ÖKOSTROM im Grund- und Ersatzversorgungstarif
+
+Die EG Levern senkt ihren Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif
+zum 1. Januar 2025 auf 36,0 ct./kWh inkl. 19% Mehrwertsteuer. Unsere ab 1.01.2025
+gültigen Preisblätter für Strom, Wärmepumpen und Wärmespeicher und weitere Informa-
+tionen finden Sie unter Stromtarife 2025.
+
+
+### Ablesung der Stromzähler
+Die Ablesung der Stromzähler erfolgt in der Zeit vom 15. Dezember 2024 bis 5. Januar 2025
+im Auftrag der Westnetz GmbH. Auf Wunsch weisen sich die Mitarbeiter aus. Sollte dieses
+Ableseverfahren bei Ihnen nicht möglich sein, bitten wir um schnellstmögliche Rücksendung
+der Ablesekarte bzw. um Angabe des Zählerstandes mit Ablesedatum unter der Tel.-Nr.
+05745-300082 oder per E-Mail an info@eg-levern.de .
+
+**Hinweis:** Die EG Levern hat keine Firmen beauftragt, die Ihnen eine Haustür- oder Telefon-
+beratung zum Stromtarif anbieten. Sollten Sie solche Anfragen bekommen, geben Sie bitte
+auf keinen Fall Ihre persönlichen Daten, Zählernummern oder Vertragsnummern bekannt.
+
 ## 2023-12-12
 
 [Information an die Verbraucher zur Senkung des Grundversorgungstarifes zum 01. Februar 2024](/pdf/2023-12-12-Information-zur-Senkung-des-Grundversorgungstarifes.pdf)
