@@ -10,6 +10,7 @@
           git
           git-crypt
           hugo
+          awscli
         ];
       };
     };
