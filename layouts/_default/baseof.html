@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" class="h-full bg-gray-50">
+<html lang="de" class="h-full bg-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,42 +43,106 @@
     </script>
 </head>
 <body class="h-full">
-    <!-- Header with navigation -->
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Top bar -->
-            <div class="flex justify-end space-x-4 py-1 text-sm text-gray-600">
-                <a href="/impressum/" class="hover:text-gray-900">Impressum</a>
-                <a href="/datenschutz/" class="hover:text-gray-900">Datenschutz</a>
-                <a href="mailto:info@eg-levern.de" class="hover:text-gray-900">Kontakt</a>
-            </div>
-            
-            <!-- Header image -->
-            {{ if .Params.header_image }}
-            <div class="h-40 bg-cover bg-center rounded-lg shadow-inner mb-3" style="background-image: url(/images/{{ .Params.header_image }});"></div>
-            {{ end }}
-
-            <!-- Main navigation -->
-            <nav class="border-b border-gray-200">
-                <div class="flex flex-wrap gap-6 py-3">
-                    <a href="/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">Home</a>
-                    <a href="/strom/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">Strom</a>
-                    <a href="/tarife/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">Stromtarife</a>
-                    <a href="/kontaktdatenblatt/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">Kontaktdatenblatt</a>
-                    <a href="/satzung/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">Satzung</a>
-                    <a href="/jubilaeum/" class="text-gray-900 hover:text-blue-600 text-sm font-medium">100 Jahre EG-Levern</a>
-                </div>
-            </nav>
+    <!-- Hero Section with Navigation -->
+    <div class="{{ if .IsHome }}min-h-screen{{ else }}min-h-[33vh]{{ end }} relative flex flex-col">
+        <!-- Background Image with Overlay -->
+        {{ if .Params.header_image }}
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url(/images/{{ .Params.header_image }});"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent"></div>
         </div>
-    </header>
+        {{ end }}
 
-    <!-- Main content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-white rounded-lg shadow px-6 py-4">
-            <div class="prose max-w-none">
-                {{ block "content" . }} {{ end }}
+        <!-- Top Navigation -->
+        <header class="relative z-10">
+            <!-- Utility Navigation -->
+            <div class="bg-white/10 backdrop-blur-md border-b border-white/10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-end space-x-8 py-3">
+                        <a href="/impressum/" class="text-white/90 hover:text-white transition-colors text-sm">Impressum</a>
+                        <a href="/datenschutz/" class="text-white/90 hover:text-white transition-colors text-sm">Datenschutz</a>
+                        <a href="mailto:info@eg-levern.de" class="text-white/90 hover:text-white transition-colors text-sm">Kontakt</a>
+                    </div>
+                </div>
             </div>
+
+            <!-- Main Navigation -->
+            <div class="bg-white/5 backdrop-blur-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <nav class="flex items-center justify-between h-20">
+                        <!-- Logo/Home -->
+                        <a href="/" class="text-2xl font-bold text-white tracking-tight">EG Levern</a>
+
+                        <!-- Desktop Navigation -->
+                        <div class="hidden lg:flex lg:items-center lg:space-x-8">
+                            <a href="/strom/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                Strom
+                            </a>
+                            <a href="/tarife/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                Stromtarife
+                            </a>
+                            <a href="/kontaktdatenblatt/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                Kontaktdatenblatt
+                            </a>
+                            <a href="/satzung/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                Satzung
+                            </a>
+                            <a href="/jubilaeum/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                100 Jahre EG-Levern
+                            </a>
+                        </div>
+
+                        <!-- Mobile Menu Button -->
+                        <button type="button" class="lg:hidden p-2 text-white hover:text-white/80">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 flex-grow flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {{ if .IsHome }}py-40{{ else }}py-12{{ end }}">
+                <h1 class="text-4xl font-bold text-white mb-4">{{ .Title }}</h1>
+                {{ if .IsHome }}
+                <p class="text-2xl text-white/90 max-w-3xl">
+                    {{ .Params.Subtitle }}
+                </p>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-sm px-8 py-6 prose max-w-none">
+            {{ block "content" . }} {{ end }}
         </div>
     </main>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="lg:hidden hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
+        <div class="h-full flex flex-col">
+            <div class="flex items-center justify-between p-6">
+                <span class="text-xl font-bold text-white">Menu</span>
+                <button type="button" class="p-2 text-white hover:text-white/80">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex-grow flex flex-col justify-center px-6 space-y-8">
+                <a href="/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Home</a>
+                <a href="/strom/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Strom</a>
+                <a href="/tarife/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Stromtarife</a>
+                <a href="/kontaktdatenblatt/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Kontaktdatenblatt</a>
+                <a href="/satzung/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Satzung</a>
+                <a href="/jubilaeum/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">100 Jahre EG-Levern</a>
+            </nav>
+        </div>
+    </div>
 </body>
 </html>

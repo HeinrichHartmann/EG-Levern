@@ -1,6 +1,7 @@
 ---
-title : "EG - Levern"
+title : "Elektrizitätsgesellschaft Levern eG"
 header_image : "header1.jpg"
+subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
 ---
 
 # Mitteilungen
