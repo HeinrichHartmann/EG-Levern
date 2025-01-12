@@ -1,42 +1,48 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
-<html lang="de">
-  <meta http-equiv="content-type" content="text/html;charset=utf-8">
-  <head>
+<!DOCTYPE html>
+<html lang="de" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
     <meta name="DC.Description" content="Das Energieversorgungsunternehmen Elektrizitätsgesellschaft Levern e.G. ist im Ortsteil Levern der Gemeinde Stemwede Grundversorger für Strom.">
     <meta name="DC.Subject" content="Stemwede, Levern, Energie, Strom, Elektrizität, Energieversorger, Unternehmen">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full">
+    <!-- Header with navigation -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top bar -->
+            <div class="flex justify-end space-x-4 py-2 text-sm text-gray-600">
+                <a href="/impressum/" class="hover:text-gray-900">Impressum</a>
+                <a href="/datenschutz/" class="hover:text-gray-900">Datenschutz</a>
+                <a href="mailto:info@eg-levern.de" class="hover:text-gray-900">Kontakt</a>
+            </div>
+            
+            <!-- Header image -->
+            {{ if .Params.header_image }}
+            <div class="h-48 bg-cover bg-center rounded-lg shadow-inner mb-4" style="background-image: url(/images/{{ .Params.header_image }});"></div>
+            {{ end }}
 
-    <link href="/styles/styles.css" type="text/css" rel="stylesheet" media="all">
-    <link href="/styles/print.css" type="text/css" rel="stylesheet" media="print">
-  </head>
-  <body >
-    <!-- SiteFrame -->
-    <div id="cockpitNavigation">
-      <DIV id="cockpit" style="FLOAT: right">
-        <DIV id="cockpitLink"><A href="/impressum/">Impressum</A></DIV>
-        <DIV id="cockpitLink"><A href="/datenschutz/">Datenschutz</A></DIV>
-        <DIV id="cockpitLink"><A href="mailto:info@eg-levern.de">Kontakt</A></DIV>
-    </div>
-    <div id="page">
+            <!-- Main navigation -->
+            <nav class="border-b border-gray-200">
+                <div class="flex space-x-8 py-4">
+                    <a href="/" class="text-gray-900 hover:text-blue-600 font-medium">Home</a>
+                    <a href="/strom/" class="text-gray-900 hover:text-blue-600 font-medium">Strom</a>
+                    <a href="/tarife/" class="text-gray-900 hover:text-blue-600 font-medium">Stromtarife</a>
+                    <a href="/kontaktdatenblatt/" class="text-gray-900 hover:text-blue-600 font-medium">Kontaktdatenblatt</a>
+                    <a href="/satzung/" class="text-gray-900 hover:text-blue-600 font-medium">Satzung</a>
+                    <a href="/jubilaeum/" class="text-gray-900 hover:text-blue-600 font-medium">100 Jahre EG-Levern</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-      <div id="head" style="background-image: url(/images/{{ .Params.header_image }});"></div>
-
-      <div class="nav" id="pageNav">
-        <span><a href="/">Home</a></span>
-        <span><a href="/strom/">Strom</a></span>
-        <span><a href="/tarife/">Stromtarife</a></span>
-        <span><a href="/kontaktdatenblatt/">Kontaktdatenblatt</a></span>
-        <span><a href="/satzung/">Satzung</a></span>
-        <span><a href="/jubilaeum/">100 Jahre EG-Levern</a></span>
-      </div>
-
-      <div id="contentArea">
-        <div class="standartFont">
-          <div id="ctl00_contentPane">
+    <!-- Main content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white rounded-lg shadow px-8 py-6">
             {{ block "content" . }} {{ end }}
-          </div>
-	      </div>
-      </div>
-    </div>
-  </body>
+        </div>
+    </main>
+</body>
 </html>
