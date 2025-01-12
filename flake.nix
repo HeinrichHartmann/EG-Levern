@@ -1,17 +1,24 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs }:
-    with nixpkgs.legacyPackages.x86_64-linux; {
-      devShell.x86_64-linux = mkShell {
-        buildInputs =  [
-          gnumake
-          git
-          git-crypt
-          hugo
-          awscli
-        ];
-      };
-    };
+  
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            gnumake
+            git
+            git-crypt
+            hugo
+            awscli
+          ];
+        };
+      }
+    );
 }
