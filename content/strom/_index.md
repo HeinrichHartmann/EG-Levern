@@ -1,5 +1,5 @@
 ---
-title: "EG Levern - Strom"
+title: "Strom"
 header_image : "header6.jpg"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "EG Levern - Satzung"
+title: "Satzung"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"

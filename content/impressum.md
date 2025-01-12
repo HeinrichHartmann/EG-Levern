@@ -1,5 +1,5 @@
 ---
-title: "EG Levern - Impressum"
+title: "Impressum"
 draft: false
 type: "page"
 header_image : "header1.jpg"

@@ -1,5 +1,5 @@
 ---
-title: "EG Levern - 100 Jahre EG Levern"
+title: "100 Jahre EG Levern"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"

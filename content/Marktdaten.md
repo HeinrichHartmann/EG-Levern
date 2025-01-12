@@ -1,5 +1,5 @@
 ---
-title: "EG Levern - Kontaktdatenblatt Marktteilnemer"
+title: "Kontaktdatenblatt Marktteilnemer"
 date: 2022-10-03
 draft: false
 type: "page"
