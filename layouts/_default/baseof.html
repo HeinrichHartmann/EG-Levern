@@ -54,18 +54,7 @@
         {{ end }}
 
         <!-- Top Navigation -->
-        <header class="relative z-10">
-            <!-- Utility Navigation -->
-            <div class="bg-white/10 backdrop-blur-md border-b border-white/10">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-end space-x-8 py-3">
-                        <a href="/impressum/" class="text-white/90 hover:text-white transition-colors text-sm">Impressum</a>
-                        <a href="/datenschutz/" class="text-white/90 hover:text-white transition-colors text-sm">Datenschutz</a>
-                        <a href="mailto:info@eg-levern.de" class="text-white/90 hover:text-white transition-colors text-sm">Kontakt</a>
-                    </div>
-                </div>
-            </div>
-
+        <header class="relative z-20">
             <!-- Main Navigation -->
             <div class="bg-white/5 backdrop-blur-md">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,15 +63,12 @@
                         <a href="/" class="text-2xl font-bold text-white tracking-tight">EG Levern</a>
 
                         <!-- Desktop Navigation -->
-                        <div class="hidden lg:flex lg:items-center lg:space-x-8">
+                        <div class="hidden md:flex md:items-center md:space-x-8 md:ml-auto">
                             <a href="/strom/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Strom
                             </a>
                             <a href="/tarife/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Stromtarife
-                            </a>
-                            <a href="/kontaktdatenblatt/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
-                                Kontaktdatenblatt
                             </a>
                             <a href="/satzung/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Satzung
@@ -92,8 +78,15 @@
                             </a>
                         </div>
 
-                        <!-- Mobile Menu Button -->
-                        <button type="button" class="lg:hidden p-2 text-white hover:text-white/80">
+                        <!-- Burger Menu Button -->
+                        <button type="button" class="md:hidden p-2 text-white hover:text-white/80" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Menu Button -->
+                        <button type="button" class="hidden md:block p-6 text-white hover:text-white/80" onclick="document.getElementById('desktop-menu').classList.toggle('hidden')">
                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
@@ -101,12 +94,20 @@
                     </nav>
                 </div>
             </div>
+
+            <!-- Desktop Dropdown Menu -->
+            <div id="desktop-menu" class="hidden absolute right-4 w-64 mt-2 py-2 bg-white/90 backdrop-blur-md rounded-lg shadow-xl z-30">
+                <a href="/impressum/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Impressum</a>
+                <a href="/datenschutz/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Datenschutz</a>
+                <a href="/Kontaktdatenblatt/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Kontakt</a>
+                <a href="/marktdaten/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Marktdaten</a>
+            </div>
         </header>
 
         <!-- Hero Content -->
         <div class="relative z-10 flex-grow flex items-center">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {{ if .IsHome }}py-40{{ else }}py-12{{ end }}">
-                <h1 class="text-4xl font-bold text-white mb-4">{{ .Title }}</h1>
+                <h1 class="text-7xl font-bold text-white mb-4">{{ .Title }}</h1>
                 {{ if .IsHome }}
                 <p class="text-2xl text-white/90 max-w-3xl">
                     {{ .Params.Subtitle }}
@@ -124,23 +125,30 @@
     </main>
 
     <!-- Mobile Menu Overlay -->
-    <div class="lg:hidden hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
+    <div id="mobile-menu" class="md:hidden hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
         <div class="h-full flex flex-col">
-            <div class="flex items-center justify-between p-6">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
                 <span class="text-xl font-bold text-white">Menu</span>
-                <button type="button" class="p-2 text-white hover:text-white/80">
+                <button type="button" class="p-2 text-white hover:text-white/80" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
                     <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            <nav class="flex-grow flex flex-col justify-center px-6 space-y-8">
-                <a href="/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Home</a>
-                <a href="/strom/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Strom</a>
-                <a href="/tarife/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Stromtarife</a>
-                <a href="/kontaktdatenblatt/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Kontaktdatenblatt</a>
-                <a href="/satzung/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">Satzung</a>
-                <a href="/jubilaeum/" class="text-2xl font-medium text-white hover:text-white/80 transition-colors">100 Jahre EG-Levern</a>
+            <nav class="px-6 py-8 space-y-6">
+                <!-- Main Navigation Items -->
+                <a href="/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">Home</a>
+                <a href="/strom/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">Strom</a>
+                <a href="/tarife/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">Stromtarife</a>
+                <a href="/kontaktdatenblatt/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">Kontaktdatenblatt</a>
+                <a href="/satzung/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">Satzung</a>
+                <a href="/jubilaeum/" class="block text-2xl font-medium text-white hover:text-white/80 transition-colors">100 Jahre EG-Levern</a>
+                <div class="border-t border-white/10"></div>
+                <a href="/impressum/" class="block text-2xl font-medium text-white/90 hover:text-white transition-colors">Impressum</a>
+                <a href="/datenschutz/" class="block text-2xl font-medium text-white/90 hover:text-white transition-colors">Datenschutz</a>
+                <a href="/marktdaten/" class="block text-2xl font-medium text-white/90 hover:text-white transition-colors">Marktdaten</a>
+                <a href="/Kontaktdatenblatt/" class="block text-2xl font-medium text-white/90 hover:text-white transition-colors">Kontakt</a>
+                </div>
             </nav>
         </div>
     </div>
