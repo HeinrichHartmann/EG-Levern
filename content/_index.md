@@ -7,36 +7,41 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
 # Aktuelle Mitteilungen
 
 {{< announcement-cards >}}
-- date: "1. Januar 2025"
-  title: "Strompreissenkung"
+- date: "11. November 2024"
+  title: "Strompreissenkung zum 1. Januar 2025"
   content: |
-    Die EG Levern senkt ihren Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif auf **36,0 ct./kWh** inkl. 19% Mehrwertsteuer.
-
-    [Stromtarife 2025 ansehen](/tarife/2025/)
+    Die EG Levern senkt ihren Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif zum 1. Januar 2025 auf **36,0 ct./kWh** inkl. 19% Mehrwertsteuer.
+    
+    [Stromtarife für 2025 ansehen](/tarife/2025/).
 
 - date: "15. Dezember 2024 - 5. Januar 2025"
   title: "Zählerablesung"
   content: |
-    Die Ablesung der Stromzähler erfolgt im Auftrag der Westnetz GmbH. Mitarbeiter weisen sich auf Wunsch aus.
-
-    Alternative Meldemöglichkeiten:
-    * Telefon: 05745-300082
-    * E-Mail: [info@eg-levern.de](mailto:info@eg-levern.de)
+    Die Ablesung der Stromzähler erfolgt in der Zeit vom 15. Dezember 2024 bis 5. Januar 2025 im Auftrag der Westnetz GmbH. Auf Wunsch weisen sich die Mitarbeiter aus.
+    
+    Sollte dieses Ableseverfahren bei Ihnen nicht möglich sein, bitten wir um schnellstmögliche Rücksendung der Ablesekarte bzw. um Angabe des Zählerstandes mit Ablesedatum per:
+    * Telefon 05745-300082 
+    * E-Mail an [info@eg-levern.de](mailto:info@eg-levern.de).
 
 - date: "Wichtiger Sicherheitshinweis"
   title: "Warnung vor Haustürgeschäften"
   type: "warning"
   content: |
-    **Die EG Levern hat keine Firmen für Haustür- oder Telefonberatung beauftragt!**
+    **Die EG Levern hat keine Firmen beauftragt, die Ihnen eine Haustür- oder Telefon-beratung zum Stromtarif anbieten.**
 
     Geben Sie keine persönlichen Daten, Zählernummern oder Vertragsnummern an unbekannte Personen weiter.
 
 - date: "12. Dezember 2023"
   title: "Grundversorgungstarif 2024"
   content: |
-    Information zur Senkung des Grundversorgungstarifes zum 01. Februar 2024
+    [Information an die Verbraucher zur Senkung des Grundversorgungstarifes zum 01. Februar 2024](/pdf/2023-12-12-Information-zur-Senkung-des-Grundversorgungstarifes.pdf)
 
-    [PDF herunterladen](/pdf/2023-12-12-Information-zur-Senkung-des-Grundversorgungstarifes.pdf)
+- date: "2. Dezember 2023"
+  title: "Ende der Strompreisbremse"
+  content: |
+    Nach dem [vorzeitigem Ende der Strompreisbremse](https://www.bundesregierung.de/breg-de/schwerpunkte/entlastung-fuer-deutschland/strompreisbremse-2125002) zum Ende des Jahres, arbeitet die E-Gesellschaft an einer Anpassung der Preise für 2024.
+    
+    Diese werden in Kürze bekannt gegeben.
 {{< /announcement-cards >}}
 
 # Über uns
