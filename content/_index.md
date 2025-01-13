@@ -31,18 +31,6 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
 
     Geben Sie keine persönlichen Daten, Zählernummern oder Vertragsnummern an unbekannte Personen weiter.
 
-- date: "12. Dezember 2023"
-  title: "Grundversorgungstarif 2024"
-  content: |
-    [Information an die Verbraucher zur Senkung des Grundversorgungstarifes zum 01. Februar 2024](/pdf/2023-12-12-Information-zur-Senkung-des-Grundversorgungstarifes.pdf)
-
-- date: "2. Dezember 2023"
-  title: "Ende der Strompreisbremse"
-  content: |
-    Nach dem [vorzeitigem Ende der Strompreisbremse](https://www.bundesregierung.de/breg-de/schwerpunkte/entlastung-fuer-deutschland/strompreisbremse-2125002) zum Ende des Jahres, arbeitet die E-Gesellschaft an einer Anpassung der Preise für 2024.
-    
-    Diese werden in Kürze bekannt gegeben.
-{{< /announcement-cards >}}
 
 # Über uns
 
