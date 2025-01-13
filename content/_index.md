@@ -32,6 +32,8 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
     Geben Sie keine persönlichen Daten, Zählernummern oder Vertragsnummern an unbekannte Personen weiter.
 
 
+{{< /announcement-cards >}}
+
 # Über uns
 
 Die Elektrizitätsgesellschaft Levern eG wurde 1919 gegründet, um nach dem Ersten Weltkrieg die
