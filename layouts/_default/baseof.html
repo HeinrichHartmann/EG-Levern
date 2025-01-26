@@ -51,8 +51,12 @@
             <div class="absolute inset-0 bg-cover bg-center" style="background-image: url(/images/{{ .Params.header_image }});"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent"></div>
         </div>
+        {{ if .Params.header_attribution }}
+        <div class="absolute bottom-2 right-2 text-white text-xs hover:underline z-50">
+        <a href="/#header_attribution" class="absolute bottom-2 right-2 text-white text-xs hover:underline">Attribution</a>
+        </div>
         {{ end }}
-
+        {{ end }}
         <!-- Top Navigation -->
         <header class="relative z-20">
             <!-- Main Navigation -->
@@ -123,6 +127,18 @@
             {{ block "content" . }} {{ end }}
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-500 text-sm">
+                <!-- Header Image Attribution -->
+                {{ if .Params.header_attribution }}
+                <p id="header_attribution" class="mb-2">Header image attribution: {{ .Params.header_attribution | safeHTML  }}</p>
+                {{ end }}
+            </div>
+        </div>
+    </footer>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="md:hidden hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">

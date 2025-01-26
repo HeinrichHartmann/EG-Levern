@@ -1,6 +1,10 @@
 ---
 title : "Elektrizitätsgesellschaft Levern eG"
-header_image : "levern-ai.png"
+header_image : "levern-by-dominik-ketz-cc-by-sa.jpg"
+header_attribution: |
+  by Dominik Ketz 
+  via <a href='https://www.teutoburgerwald.de/region/ausflugsziele/mein-ziel/stiftskirche-levern'>Tourismusverband Teutoburger Wald</a>
+  <a href='https://creativecommons.org/licenses/by-sa/4.0/deed.en'>CC-BY-SA</a>
 subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
 ---
 
