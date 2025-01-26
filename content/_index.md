@@ -16,7 +16,7 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
   content: |
     Die EG Levern senkt ihren Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif zum 1. Januar 2025 auf **36,0 ct./kWh** inkl. 19% Mehrwertsteuer.
     
-    [Stromtarife für 2025 ansehen](/tarife/2025/).
+    [Stromtarife für 2025 ansehen](/strom/2025/)
 
 - date: "15. Dezember 2024"
   title: "Zählerablesung"
@@ -25,7 +25,7 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
     
     Sollte dieses Ableseverfahren bei Ihnen nicht möglich sein, bitten wir um schnellstmögliche Rücksendung der Ablesekarte bzw. um Angabe des Zählerstandes mit Ablesedatum per:
     * Telefon 05745-300082 
-    * E-Mail an [info@eg-levern.de](mailto:info@eg-levern.de).
+    * E-Mail an [info@eg-levern.de](mailto:info@eg-levern.de)
 
 - date: "Wichtiger Sicherheitshinweis"
   title: "Warnung vor Haustürgeschäften"
@@ -49,11 +49,12 @@ Aktuell hat die Elektrizitätsgesellschaft Levern rund 450 Mitglieder.
 
 Im Jahr 2019 feierte die EG Levern ihr [100-jähriges Jubiläum.](/jubilaeum/)
 
-# Werden Sie Mitglied
+# Mitgliedschaft
 
 Die Mitgliedschaft in unserer Genossenschaft steht allen Stromkunden offen. Als Mitglied profitieren Sie von:
-- Mitbestimmung in der Generalversammlung
+
 - Jährlicher Warenrückvergütung
+- Mitbestimmung in der Generalversammlung
 - Förderung der lokalen Energieversorgung
 
 Die Mitgliedschaft wird auf einen gesonderten Vordruck beantragt. Je 100 € Stromverbrauch im Jahr ist ein Geschäftsanteil zu je 10 € zu erwerben. Dabei wird jedoch nur der erste Anteil mit einem Betrag von 10 € eingezahlt. Die weiteren Einzahlungen auf die Geschäftsanteile bis zu ihrer vollen Summe erfolgt durch Einbehaltung eines Teiles der jährlich auszuschüttenden Warenrückvergütung. Nach vollständiger Einbezahlung wird die Warenrückvergütung voll ausgezahlt. Bei Kündigung der Mitgliedschaft wird nach Ablauf der entsprechenden Fristen das eingezahlte Geschäftsguthaben erstattet.
@@ -62,14 +63,22 @@ Bei Eintritt in die Gesellschaft ist neben der Ersteinzahlung auf den ersten Ges
 
 Eine Nachschusspflicht für die Mitglieder besteht nicht.
 
-## Kontakt
-
-Bei Interesse an einer Mitgliedschaft oder Fragen wenden Sie sich bitte an:
-
-> Elektrizitätsgesellschaft Levern eG  
-> Heidi Helmich  
-> Osterland 2  
-> 32351 Stemwede-Levern  
-> Tel.: 05745/ 300082  
-> Fax: 05745/ 300083  
-> E-Mail: [info@eg-levern.de](mailto:info@eg-levern.de)
+<div class="bg-gray-50 rounded-lg p-8 my-8 text-center shadow-md border-l-4 border-blue-500">
+  <h2 class="text-blue-500 text-4xl mb-6">Mitglied werden!</h2>
+  <div class="flex flex-col gap-4 text-lg">
+    <div class="mb-2">
+      <p class="font-semibold">Heidi Helmich</p>
+      <p>Elektrizitätsgesellschaft Levern eG</p>
+    </div>
+    <div class="flex justify-center gap-8">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-phone text-blue-500"></i>
+        <a href="tel:05745300082" class="hover:text-blue-500">05745/ 300082</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="fas fa-envelope text-blue-500"></i>
+        <a href="mailto:info@eg-levern.de" class="hover:text-blue-500">info@eg-levern.de</a>
+      </div>
+    </div>
+  </div>
+</div>

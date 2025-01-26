@@ -3,7 +3,7 @@ title: "Kontaktdatenblatt"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"
-header_image : "header1.jpg"
+header_image: "by_Heidi_Helmich/y_0976003a-b617-4ec1-95c5-e7a54c201603.jpg"
 ---
 
 <style>
@@ -27,13 +27,15 @@ h2 {
 
 ## Anschrift
 
-|                                     |                           |
-|-------------------------------------|---------------------------|
-| Elektrizitätsgesellschaft Levern eG | Tel.: 05745 300082        |
-| Heidi Helmich                       | Fax.: 05745 300083        |
-| Osterland 2                         | Email.: info@eg-levern.de |
-| 32351 Stemwede-Levern               | Web.:   eg-levern.de      |
-|                                     | USt.-Id.: DE 125 750 469  |
+Elektrizitätsgesellschaft Levern eG  
+Heidi Helmich  
+Osterland 2  
+32351 Stemwede-Levern  
+Tel.: 05745/ 300082  
+Fax: 05745/ 300083  
+E-Mail: [info@eg-levern.de](mailto:info@eg-levern.de)  
+Web: [eg-levern.de](https://eg-levern.de)  
+Ust-Id.: DE 125 750 469
 
 ## Vertragsmanagement
 

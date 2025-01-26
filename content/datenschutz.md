@@ -2,7 +2,11 @@
 title: "Datenschutz"
 draft: false
 type: "page"
-header_image: "header1.jpg"
+header_image : "levern-by-dominik-ketz-cc-by-sa-top.jpg"
+header_attribution: |
+  by Dominik Ketz 
+  via <a href='https://www.teutoburgerwald.de/region/ausflugsziele/mein-ziel/stiftskirche-levern'>Tourismusverband Teutoburger Wald</a>
+  <a href='https://creativecommons.org/licenses/by-sa/4.0/deed.en'>CC-BY-SA</a>
 ---
 
 ## Datenschutzerklärung

@@ -1,6 +1,6 @@
 ---
 title: "Strom"
-header_image : "header6.jpg"
+header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 ---
 
 # Stromtarife

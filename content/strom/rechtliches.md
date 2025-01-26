@@ -1,6 +1,6 @@
 ---
 title : EG Levern - Rechtliches
-header_image: header1.jpg
+header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 ---
 
 # Rechtliches

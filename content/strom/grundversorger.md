@@ -1,6 +1,6 @@
 ---
 title: "EG Levern - Strom / Grundversorger"
-header_image : "header7.jpg"
+header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 ---
 
 **Die Elektrizitätsgesellschaft Levern eG ist Grundversorger im Ortsteil Levern in 32351 Stemwede**

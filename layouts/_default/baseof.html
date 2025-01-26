@@ -44,7 +44,7 @@
 </head>
 <body class="h-full">
     <!-- Hero Section with Navigation -->
-    <div class="{{ if .IsHome }}min-h-screen{{ else }}min-h-[33vh]{{ end }} relative flex flex-col">
+    <div class="{{ if .IsHome }}min-h-screen{{ else }}min-h-[50vh]{{ end }} relative flex flex-col">
         <!-- Background Image with Overlay -->
         {{ if .Params.header_image }}
         <div class="absolute inset-0 z-0">
@@ -71,19 +71,17 @@
                             <a href="/strom/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Strom
                             </a>
-                            <a href="/tarife/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
-                                Stromtarife
-                            </a>
                             <a href="/satzung/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Satzung
                             </a>
-                            <a href="/jubilaeum/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
-                                100 Jahre EG-Levern
+                            <a href="/kontaktdatenblatt/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
+                                Kontakt
                             </a>
+
                         </div>
 
                         <!-- Burger Menu Button -->
-                        <button type="button" class="md:hidden p-2 text-white hover:text-white/80" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <button type="button" class="md:hidden p-6 text-white hover:text-white/80" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
@@ -101,10 +99,9 @@
 
             <!-- Desktop Dropdown Menu -->
             <div id="desktop-menu" class="hidden absolute right-4 w-64 mt-2 py-2 bg-white/90 backdrop-blur-md rounded-lg shadow-xl z-30">
+                <a href="/jubilaeum/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">100 Jahre EG-Levern</a>
                 <a href="/impressum/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Impressum</a>
                 <a href="/datenschutz/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Datenschutz</a>
-                <a href="/Kontaktdatenblatt/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Kontakt</a>
-                <a href="/marktdaten/" class="block px-4 py-2 text-gray-800 hover:bg-white/50 transition-colors">Marktdaten</a>
             </div>
         </header>
 
