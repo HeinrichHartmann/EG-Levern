@@ -15,7 +15,6 @@ Elektrizitätsgesellschaft Levern e.G.
 Osterland 2  
 32351 Stemwede-Levern  
 Tel. 05745 300082  
-Fax 05745 300083  
 E-Mail. info@eg-levern.de  
 Ansprechpartner: Frau Heidi Helmich
 
@@ -31,9 +30,9 @@ Umsatzsteuer Identifiaktionsnummer gemäß § 27a Umsatzsteuergesetz: DE - 125 7
 
 ### Bankverbindung
 
-* Volksbank Lübbecker Land eG  
-  IBAN:DE67 4909 2650 0010 5030 00  
-  BIC: DENODEM1LUB
+* Volksbank Plus eG  
+  IBAN: DE67 4909 2650 0010 5030 00  
+  BIC: GENO DE M1 LUB    
 
 * Sparkasse Minden-Lübbecke  
   IBAN: DE86 4905 0101 0010 0025 09  
@@ -43,11 +42,10 @@ Umsatzsteuer Identifiaktionsnummer gemäß § 27a Umsatzsteuergesetz: DE - 125 7
 
 Verantwortlich für die Prüfung der Gesellschaft:
 
-
-* Genossenschaftsverband - Verpand der Reionen e.V.  
+* Genoverband e.V.  
   Verwaltungssitz Hannover  
-  Hannoversche Strasse 149  
-  30627 Hannover
+  Karl-Wichert-Allee 76a  
+  30625 Hannover  
 
 ### Haftungshinweis
 
@@ -56,8 +54,7 @@ Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließli
 deren Betreiber verantwortlich.
 
 Zuständiger Prüfungsverband nach § 54 GenG ist der
-Genossenschaftsverband-Verband der Regionen e.V. mit Sitz in Frankfurt am Main,
-erreichbar unter [www.genossenschaftsverband.de](http://www.genossenschaftsverband.de).
+Genoverband e.V.. mit Sitz in Frankfurt am Main, erreichbar unter [www.genoverband.de](http://www.genoverband.de).
 
 ### Betreuung website
 

@@ -7,11 +7,11 @@ header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 
 Informationen zu sonstigen Preisbestandteilen des Strompreises
 
-Mit der EEG-Umlage wird die Erzeugung von Strom in Anlagen erneuerbarer Energieträger gefördert, die nach dem Erneuerbaren-Energien-Gesetz (EEG) vergütet werden. Die Kosten werden gemäß EEG auf alle Verbraucher umgelegt. Die vier deutschen Übertragungsnetzbetreiber (ÜNB) ermitteln im Auftrag des Gesetzgebers auf Basis von Prognosen unabhängiger Gutachter die EEG-Umlage für das jeweils folgende Kalenderjahr. Die Ermittlung der EEG-Umlage erfolgt in Abstimmung mit der Bundesnetzagentur, welche den gesetzlichen Auftrag hat, die Ermittlung, Festlegung, Veröffentlichung, Weitergabe der EEG-Umlage und die Vermarktung der EEG-Strommengen zu überwachen sowie die Anforderungen zur Vermarktung zu regeln.
-
 Die Konzessionsabgabe ist ein Entgelt an die Kommune für die Mitbenutzung von öffentlichen Verkehrswegen durch Versorgungsleitungen. Daher wird auch die jeweilige Konzessionsabgabe seitens des Netzbetreibers weiterverrechnet und vom Lieferanten in Rechnung gestellt.
 
-Informationen zur Energieeffiziens
+Detaillierte Informationen zu Strompreisbestandteilen, Netzentgelten, erneuerbaren Energien und Umlagen finden Sie auf der gemeinsamen Informationsplattform der deutschen Übertragungsnetzbetreiber unter: [www.netztransparenz.de](https://www.netztransparenz.de)
+
+**Informationen zur Energieeffiziens**
 
 Informationen zu Anbietern von wirksamen Maßnahmen zur Energieeffizienzverbesserung und Energieeinsparung sowie ihren Angeboten finden Sie auf einer bei der Bundesstelle für Energieeffizienz (BfEE) öffentlich geführten Anbieterliste unter: [www.bfee-online.de](http://www.bfee-online.de)
 
