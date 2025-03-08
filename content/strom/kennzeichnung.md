@@ -3,7 +3,7 @@ title: "EG Levern - Strom / Grundversorger"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"
-header_image : "header7.jpg"
+header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 ---
 
 # Kennzeichnung der Stromlieferungen 2021

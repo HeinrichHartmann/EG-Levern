@@ -1,27 +1,10 @@
 ---
-title: "Kontaktdatenblatt"
+title: "Kontakt"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"
 header_image: "by_Heidi_Helmich/y_0976003a-b617-4ec1-95c5-e7a54c201603.jpg"
 ---
-
-<style>
-table {
-width:100%;
-}
-
-td:first-child {
-	width: 20em;
-}
-
-h2 {
-	padding: 8px 4px 2px 4px;
-	background: #7A8AB7;
-	color: white;
-}
-</style>
-
 
 # Kontaktdatenblatt
 

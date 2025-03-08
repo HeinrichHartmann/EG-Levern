@@ -3,7 +3,7 @@ title: "100 Jahre EG Levern"
 date: 2020-02-09T17:28:18Z
 draft: false
 type: "page"
-header_image : "x_Levern_by_heinrich.jpg"
+header_image : "x_levern_by_heinrich.jpg"
 ---
 
 # JUBILÄUM – 100 Jahre Elektrizitätsgesellschaft Levern eG
