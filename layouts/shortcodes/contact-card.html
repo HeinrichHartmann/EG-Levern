@@ -1,0 +1,116 @@
+{{ $inner := .Inner | transform.Unmarshal }}
+{{ $bgColor := .Get "bg-color" | default "#f9fafb" }}
+{{ $textColor := .Get "text-color" | default "#1f2937" }}
+{{ $titleColor := .Get "title-color" | default $textColor }}
+
+<div class="rounded-lg p-5 p-t-0 my-8 shadow-md border-l-4 border-blue-500" style="background-color: {{ $bgColor }}">
+  {{ with $inner.name }}
+  <p class="text-2xl mb-2" style="color: {{ $titleColor }}">{{ . }}</p>
+  {{ end }}
+
+  {{ with $inner.description }}
+  <p class="text-gray-600 text-lg italic mb-6">{{ . }}</p>
+  {{ end }}
+
+  <table class="w-full border-collapse">
+    <tbody class="divide-y-0">
+      {{ with $inner.contact }}
+      <tr style="border-bottom: 0px;">
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Name</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.address }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Anschrift</td>
+        <td class="py-2 text-lg whitespace-pre-line" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.phone }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Telefon</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}"><a href="tel:{{ . | replaceRE "[^0-9]" "" }}" class="hover:text-blue-500">{{ . }}</a></td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.email }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">E-Mail</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}"><a href="mailto:{{ . }}" class="hover:text-blue-500">{{ . }}</a></td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.web }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Web</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}"><a href="https://{{ . }}" class="hover:text-blue-500" target="_blank">{{ . }}</a></td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.supplier_code }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Lieferant</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.certificate }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Zertifikat</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . | markdownify }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.tax_id }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">USt-IdNr.</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.bank_details }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Bankverbindung</td>
+        <td class="py-2 text-lg whitespace-pre-line" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.register_number }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Register-Nr.</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.tax_number }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Steuer-Nr.</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.eic_code }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">EIC-Code</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.regulation_zone }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">Regelzone</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+
+      {{ with $inner.bdew_code }}
+      <tr>
+        <td class="text-gray-500 pr-12 py-2 align-top w-32 uppercase text-sm tracking-wide">BDEW-Code</td>
+        <td class="py-2 text-lg" style="color: {{ $textColor }}">{{ . }}</td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div> 

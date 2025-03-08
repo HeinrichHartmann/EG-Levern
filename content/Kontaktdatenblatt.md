@@ -6,7 +6,7 @@ type: "page"
 header_image: "by_Heidi_Helmich/y_0976003a-b617-4ec1-95c5-e7a54c201603.jpg"
 ---
 
-{{< contact-card >}}
+{{< contact-card title-color="#3b82f6" >}}
 name: "Elektrizitätsgesellschaft Levern eG"
 contact: "Heidi Helmich"
 address: |
@@ -31,7 +31,8 @@ phone: "05403 / 3300-397"
 {{< /contact-card >}}
 
 {{< contact-card bg-color="#fcfcfc" text-color="#6b7280" >}}
-name: "An-, Abmeldung zur Netznutzung / Kündigung (UTILMD)"
+name: "An-, Abmeldung zur Netznutzung / Kündigung"
+description: "UTILMD"
 contact: "edikoo GmbH & Co.KG - Team Marktkommunikation"
 address: |
     Schloßstraße 7
@@ -76,41 +77,40 @@ regulation_zone: "10YDE-RWENET---I (Amprion GmbH)"
 bdew_code: "9904292000003"
 {{< /contact-card >}}
 
-## Marktrolle
+{{< contact-card bg-color="#fcfcfc" text-color="#6b7280" >}}
+name: "Marktrolle"
+description: "BDEW-Codenummern/Global Location Number (GLN) Strom"
+supplier_code: "9904292000003"
+certificate: "[EG-Levern.zip](/cert/2022-12-25-eg-levern.zip)"
+{{< /contact-card >}}
 
-|                    |                                                           |
-|--------------------|-----------------------------------------------------------|
-| Marktrolle         | BDEW-Codenummern/ <br> Global Location Number (GLN) Strom |
-| Lieferant          | 9904292000003                                             |
-| EDIFACT Zertifikat | [EG-Levern.zip](/cert/2022-12-25-eg-levern.zip)           |
+{{< contact-card bg-color="#fcfcfc" text-color="#6b7280" >}}
+name: "Elektronischer Datenaustausch/Formate"
+contact: "edikoo GmbH & Co.KG - Team Marktkommunikation"
+address: |
+    Schloßstraße 7
+    49186 Bad Iburg
+phone: "05403 / 3300-397"
+email: "eg-levern@edikoo.com"
+{{< /contact-card >}}
 
-## Elektronischer Datenaustausch/Formate, Verschlüsselung/Signatur
+{{< contact-card bg-color="#fcfcfc" text-color="#6b7280" >}}
+name: "Bilanzkreismanagement"
+contact: "Elektrizitätsgesellschaft Levern eG - Heidi Helmich"
+address: |
+    Osterland 2
+    32351 Stemwede-Levern
+phone: "05745 / 300082"
+email: "BKV-eGLevern@ten-eg.de"
+eic_code: "11X0-0000-0767-3"
+{{< /contact-card >}}
 
-|                |                                               |
-|----------------|-----------------------------------------------|
-| Name, Vorname  | edikoo GmbH & Co.KG - Team Marktkommunikation |
-| Straße Hausnr. | Schloßstraße 7                                |
-| PLZ Ort        | 49186 Bad Iburg                               |
-| Telefon        | 05403 / 3300-397                              |
-| E-Mail         | eg-levern@edikoo.com                          |
-
-## Bilanzkreismanagement
-
-|                        |                                                     |
-|------------------------|-----------------------------------------------------|
-| Bilanzkreis (EIC-Code) | 11X0-0000-0767-3                                    |
-| Name, Vorname          | Elektrizitätsgesellschaft Levern eG - Heidi Helmich |
-| Straße Hausnr.         | Osterland 2                                         |
-| PLZ Ort                | 32351 Stemwede-Levern                               |
-| Telefon                | 05745 / 300082                                      |
-| E-Mail                 | BKV-eGLevern@ten-eg.de                              |
-
-## Sonstige Ansprechpartner / Austausch von Zertifikaten
-
-|                |                        |
-|----------------|------------------------|
-| Name, Vorname  | edikoo GmbH & Co.KG    |
-| Straße Hausnr. | Schloßstraße 7         |
-| PLZ Ort        | 49186 Bad Iburg        |
-| Telefon        | 05403 / 3300-397       |
-| E-Mail         | zertifikate@edikoo.com |
+{{< contact-card bg-color="#fcfcfc" text-color="#6b7280" >}}
+name: "Sonstige Ansprechpartner / Austausch von Zertifikaten"
+contact: "edikoo GmbH & Co.KG"
+address: |
+    Schloßstraße 7
+    49186 Bad Iburg
+phone: "05403 / 3300-397"
+email: "zertifikate@edikoo.com"
+{{< /contact-card >}}
