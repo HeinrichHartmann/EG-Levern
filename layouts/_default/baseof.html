@@ -2,7 +2,7 @@
 <html lang="de" class="h-full bg-white">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{{ .Title }}</title>
     <meta name="DC.Description" content="Das Energieversorgungsunternehmen Elektrizitätsgesellschaft Levern e.G. ist im Ortsteil Levern der Gemeinde Stemwede Grundversorger für Strom.">
     <meta name="DC.Subject" content="Stemwede, Levern, Energie, Strom, Elektrizität, Energieversorger, Unternehmen">
@@ -45,7 +45,7 @@
 </head>
 <body class="h-full">
     <!-- Hero Section with Navigation -->
-    <div class="{{ if .IsHome }}min-h-screen{{ else }}min-h-[50vh]{{ end }} relative flex flex-col">
+    <div class="{{ if .IsHome }}min-h-screen{{ else }}min-h-[50vh]{{ end }} relative flex flex-col w-full">
         <!-- Background Image with Overlay -->
         {{ if .Params.header_image }}
         <div class="absolute inset-0 z-0">
@@ -59,15 +59,15 @@
         {{ end }}
         {{ end }}
         <!-- Top Navigation -->
-        <header class="relative z-20" x-data="{ isOpen: false }">
+        <header class="relative z-20 w-full" x-data="{ isOpen: false }">
             <!-- Main Navigation -->
-            <div class="bg-white/5 backdrop-blur-md">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <nav class="flex items-center justify-between h-20">
+            <div class="bg-white/5 backdrop-blur-md w-full">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <nav class="flex items-center justify-between h-20 w-full">
                         <!-- Logo/Home -->
                         <a href="/" class="text-2xl font-bold text-white tracking-tight">EG Levern</a>
                         <!-- Desktop Navigation -->
-                        <div class="md:flex md:items-center md:space-x-8 md:ml-auto ">
+                        <div class="hidden md:flex md:items-center md:space-x-8 md:ml-auto">
                             <a href="/strom/" class="text-lg text-white/90 hover:text-white hover:underline decoration-2 underline-offset-8 transition-all py-2">
                                 Strom
                             </a>
@@ -79,40 +79,38 @@
                             </a>
                         </div>
 
-                        
-
-                        <!-- Mobile menu button -->
-                         <div class="p-6">
-                        <button 
-                            @click="isOpen = !isOpen" 
-                            class=" inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                            aria-expanded="false"
-                        >
-                            <span class="sr-only">Menü öffnen</span>
-                            <!-- Icon when menu is closed -->
-                            <svg 
-                                x-show="!isOpen" 
-                                class="h-6 w-6" 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor"
+                        <!-- Menu button (always visible) -->
+                        <div class="p-4">
+                            <button 
+                                @click="isOpen = !isOpen"
+                                class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                                aria-expanded="false"
                             >
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                            <!-- Icon when menu is open -->
-                            <svg 
-                                x-show="isOpen" 
-                                class="h-6 w-6" 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor"
-                            >
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                                <span class="sr-only">Menü öffnen</span>
+                                <!-- Icon when menu is closed -->
+                                <svg 
+                                    x-show="!isOpen" 
+                                    class="h-6 w-6" 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    fill="none" 
+                                    viewBox="0 0 24 24" 
+                                    stroke="currentColor"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                <!-- Icon when menu is open -->
+                                <svg 
+                                    x-show="isOpen" 
+                                    class="h-6 w-6" 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    fill="none" 
+                                    viewBox="0 0 24 24" 
+                                    stroke="currentColor"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
                     </nav>
                 </div>
             </div>
@@ -126,7 +124,7 @@
                 x-transition:leave="transition ease-in duration-75 transform"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
-                class="absolute top-20 inset-x-0 bg-black/95 backdrop-blur-md"
+                class="absolute top-20 inset-x-0 bg-black/95 backdrop-blur-md w-full"
             >
                 <nav class="px-6 py-8 space-y-6">
                     <!-- Main Navigation Items -->
@@ -142,11 +140,11 @@
         </header>
 
         <!-- Hero Content -->
-        <div class="relative z-10 flex-grow flex items-center">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {{ if .IsHome }}py-40{{ else }}py-12{{ end }}">
-                <h1 class="text-7xl font-bold text-white mb-4">{{ .Title }}</h1>
+        <div class="relative z-10 flex-grow flex items-center w-full">
+            <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {{ if .IsHome }}py-40{{ else }}py-12{{ end }}">
+                <h1 class="text-4xl md:text-7xl font-bold text-white mb-4 hyphens-auto break-words" style="hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto;" lang="de">{{ .Title }}</h1>
                 {{ if .IsHome }}
-                <p class="text-2xl text-white/90 max-w-3xl">
+                <p class="text-xl md:text-2xl text-white/90 max-w-3xl hyphens-auto" style="hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto;" lang="de">
                     {{ .Params.Subtitle }}
                 </p>
                 {{ end }}
@@ -155,15 +153,17 @@
     </div>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="bg-white rounded-xl shadow-sm px-8 py-6 prose max-w-none">
-            {{ block "content" . }} {{ end }}
+    <main class="w-full">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white rounded-xl shadow-sm px-4 sm:px-8 py-6 prose prose-sm sm:prose lg:prose-lg w-full">
+                {{ block "content" . }} {{ end }}
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-gray-100 py-8 w-full">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center text-gray-500 text-sm">
                 <!-- Header Image Attribution -->
                 {{ if .Params.header_attribution }}
@@ -172,7 +172,5 @@
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>
