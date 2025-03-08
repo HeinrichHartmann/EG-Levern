@@ -6,24 +6,21 @@ type: "page"
 header_image : "x_levern_by_heinrich.jpg"
 ---
 
-# JUBILÄUM – 100 Jahre Elektrizitätsgesellschaft Levern eG
-
-Der beschauliche Ort Levern im nördlichen Westfalen feiert in diesem Jahr sein 1050-jähriges
+Der beschauliche Ort Levern im nördlichen Westfalen feierte 2019 sein 1050-jähriges
 Bestehen.
 
-Die örtliche Stromgenossenschaft – die Elektrizitätsgesellschaft Levern eG feiert am 31.
-August 2019 ebenfalls ein Jubiläum und wird 100 Jahre alt.
+Die örtliche Stromgenossenschaft – die Elektrizitätsgesellschaft Levern eG feierte am 31.
+August 2019 ebenfalls ein Jubiläum und wurde 100 Jahre alt.
 
-Die Feierlichkeiten finden in Levern im Rahmen einer offiziellen Veranstaltung mit
+Die Feierlichkeiten fanden in Levern im Rahmen einer offiziellen Veranstaltung mit
 Vertretern der Gemeinde, Banken, Vereine, Geschäftspartner und diverser
 Dienstleistungsunternehmen am Jubiläumstag statt.
 
 Um auch alle Mitglieder und Stromkunden in Levern an diesem besonderen Ereignis teilhaben zu
-lassen und darüber hinaus noch das Dorfbild zu verschönern, werden eine Vielzahl der
+lassen und darüber hinaus noch das Dorfbild zu verschönern, sind eine Vielzahl der
 vorhandenen Kabelverteilerschränke vom Kunst- und Fassadenmaler, Piet Meulenkamp, mit
 Motiven aus dem historischen Ortskern oder Wunschmotiven der Anwohner am Standort des
-Schrankes bemalt. Erste Stromkästen wurden bereits im Mai fertiggestellt und sind im Ort zu
-bewundern.
+Schrankes bemalt worden. Erste Stromkästen sind im Ort zu bewundern.
 
 {{< gallery >}}
 <div class="column">
@@ -43,14 +40,14 @@ bewundern.
 </div>
 {{< /gallery >}}
 
-Außerdem plant das Unternehmen die Beleuchtung der Leverner Windmühle anlässlich besonderer
+Außerdem übernimmt das Unternehmen die Beleuchtung der Leverner Windmühle anlässlich besonderer
 Veranstaltungen und während der Advents- und Weihnachtszeit.
 
 ## Zur Historie
 
 Die Elektrizitätsgesellschaft Levern eG mag heute unter deutschen Strom-Giganten bescheiden
 erscheinen. Für Levern und seine Umgebung indessen ist dieses genossenschaftliche
-Unternehmen seit nunmehr 100 Jahren ein außerordentlich bedeutsamer Wirtschaftsfaktor. In
+Unternehmen seit nunmehr über 100 Jahren ein außerordentlich bedeutsamer Wirtschaftsfaktor. In
 unseren Tagen stellen die störungsfreie Versorgung mit elektrischer Energie und der
 Anschluss auch des fernsten Wohn- oder Bauernhauses im ländlichen Bereich eine absolute
 Selbstverständlichkeit dar.
@@ -116,22 +113,24 @@ Deutschland, den Netzbetrieb aufzugeben oder sich anderweitig aufzustellen. Die
 Elektrizitätsgesellschaft Levern eG bemühte sich bis zum Jahr 2011, den neuen Anforderungen
 durch Inanspruchnahme weiterer kostenintensiver Dienstleistungen zu entsprechen. Im Jahr
 2011 entschieden Vorstand und Aufsichtsrat, den Netzbetrieb und die Betriebsführung an die
-heutige Westnetz GmbH (Teil von innogy SE) zu verpachten. Mit der innogy SE verbindet die
-Genossenschaft eine bereits langjährige und für beide Seiten zufriedenstellende Kooperation.
+heutige Westnetz GmbH (Teil der Westenergie AG) zu verpachten. Mit der Westenergie AG
+verbindet die Genossenschaft eine bereits langjährige und für beide Seiten
+zufriedenstellende Kooperation.
 
 Seit 2012 ist das Unternehmen nur noch Netzeigentümer und Stromlieferant. Im Jubiläumsjahr
-werden ca. 900 Lieferstellen mit Strom versorgt. Der Strombezug erfolgt über die Leipziger
-Strombörse in Partnerschaft mit der innogy SE.
+wurden ca. 900 Lieferstellen mit Strom versorgt. Der Strombezug erfolgt seit 2024 über die
+TEN eG (Teutoburger EnergieNetzwerk eG).
 
 Der Vorstand besteht aus 4 Mitgliedern, der 1. Vorsitzende ist André Kutsche. Weitere
-Mitglieder des Vorstandes sind Robert Howsa, Ralf Wenzel und Dr. Heinrich Hartmann. Im Aufsichtsrat
-sind 5 Mitglieder, Karl-Jürgen Kramer ist der Vorsitzende, ferner gehören Gerhard Stegmann,
-Karl-Heinz Warner, Karl-Ernst Vorbröker und Florian Reckmann dem Kontrollorgan an. Alle sind
-ehrenamtlich für die Genossenschaft tätig. Die Mitgliederzahl hat sich auf 439 mit 9135
-Geschäftsanteilen erhöht. Die Kirchengemeinde Levern ist das älteste Mitglied. Mit der Nr.
-94 gehörte sie bereits in den 1930er Jahren zu den ersten Mitgliedern.
+Mitglieder des Vorstandes sind Robert Howsa (2. Vors.), Ralf Wenzel und Dr. Heinrich
+Hartmann. Der Aufsichtsrat besteht seit 2024 nur noch aus 4 Mitgliedern, Karl-Jürgen Kramer
+ist der Vorsitzende, ferner gehören Florian Reckmann, Henrik Wienholdt und Felix Hohmeier
+dem Kontrollorgan an. Alle sind ehrenamtlich für die Genossenschaft tätig. Die
+Mitgliederzahl hat sich auf 469 mit 9220 Geschäftsanteilen erhöht. Die Kirchengemeinde
+Levern ist das älteste Mitglied. Mit der Nr. 94 gehörte sie bereits in den 1930er Jahren zu
+den ersten Mitgliedern.
 
 Als festangestellte Mitarbeiterin ist Heidi Helmich als Geschäftsführerin im Unternehmen
 tätig. Sie übernahm diese Aufgabe im Jahr 2002. Ihr großer Vorteil ist, in Levern geboren
 und aufgewachsen zu sein. Im Ort jedes Haus und jede Straße (in der Fachsprache
-Marktlokation oder Zählpunkt) zu kennen, ist bei ihrer Arbeit von großem Vorteil. 
+Marktlokation oder Zählpunkt) zu kennen, ist bei ihrer Arbeit von großem Vorteil.
