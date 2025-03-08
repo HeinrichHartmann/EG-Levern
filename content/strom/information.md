@@ -22,7 +22,6 @@ Wir verpflichten uns, Beanstandungen von Verbrauchern im Sinne des § 13 BGB (Ve
 Elektrizitätsgesellschaft Levern eG  
 Osterland 2 – 32351 Stemwede-Levern  
 Tel. 05745 300082  
-Fax 05745 300083  
 E-Mail: [info@eg-levern.de](mailto:info@eg-levern.de)
 
 Sie sind berechtigt, die Schlichtungsstelle nach § 111b EnWG anzurufen. Ein solcher Antrag ist erst zulässig, wenn das Unternehmen der Verbraucherbeschwerde nicht spätestens nach vier Wochen ab Zugang beim Unternehmen abgeholfen hat. Das Recht der Beteiligten, die Gerichte anzurufen oder ein anderes Verfahren nach dem EnWG zu beantragen, bleibt unberührt.

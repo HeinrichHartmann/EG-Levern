@@ -15,7 +15,6 @@ Heidi Helmich
 Osterland 2  
 32351 Stemwede-Levern  
 Tel.: 05745/ 300082  
-Fax: 05745/ 300083  
 E-Mail: [info@eg-levern.de](mailto:info@eg-levern.de)  
 Web: [eg-levern.de](https://eg-levern.de)  
 Ust-Id.: DE 125 750 469

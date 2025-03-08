@@ -17,4 +17,3 @@ Weiterführende Informationen erhalten Sie
 
 - per Email: info@eg-levern.de
 - per Telefon: 05745 / 30 00 82
-- per Faxabruf: 05745 / 30 00 83

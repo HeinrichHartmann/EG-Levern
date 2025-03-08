@@ -52,7 +52,6 @@ h2 {
 | Straße Hausnr.         | Osterland 2                                         |
 | PLZ Ort                | 32351 Stemwede-Levern                               |
 | Telefon                | 05745 / 300082                                      |
-| Fax                    | 05745 / 300083                                      |
 | E-Mail                 | BKV-eGLevern@ten-eg.de                              |
 
 ## Sonstige Ansprechpartner / Austausch von Zertifikaten
