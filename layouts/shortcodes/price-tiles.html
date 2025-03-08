@@ -1,0 +1,23 @@
+{{ $strompreis := .Get "strompreis" }}
+{{ $stromprice_unit := .Get "stromprice_unit" }}
+{{ $grundpreis := .Get "grundpreis" }}
+{{ $grundpreis_unit := .Get "grundpreis_unit" }}
+{{ $netto_strom := .Get "netto_strom" }}
+{{ $netto_grund := .Get "netto_grund" }}
+{{ $preisblatt_url := .Get "preisblatt_url" }}
+
+<div class="flex flex-wrap gap-8 my-8">
+    <a href="{{ $preisblatt_url }}" class="flex-1 min-w-[250px] p-8 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg text-center transition-colors duration-200 no-underline cursor-pointer">
+        <h2 class="text-2xl text-blue-600 m-0">Strompreis*</h2>
+        <div class="flex items-baseline justify-center gap-2 text-4xl font-bold text-blue-800 my-4">
+            {{ $strompreis }} <span class="text-lg text-gray-600">{{ $stromprice_unit }}</span>
+        </div>
+    </a>
+    <a href="{{ $preisblatt_url }}" class="flex-1 min-w-[250px] p-8 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg text-center transition-colors duration-200 no-underline cursor-pointer">
+        <h2 class="text-2xl text-blue-600 m-0">Grundpreis*</h2>
+        <div class="flex items-baseline justify-center gap-2 text-4xl font-bold text-blue-800 my-4">
+            {{ $grundpreis }} <span class="text-lg text-gray-600">{{ $grundpreis_unit }}</span>
+        </div>
+    </a>
+</div>
+
