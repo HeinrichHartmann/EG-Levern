@@ -39,7 +39,7 @@ _Stand: 11. November 2024._
 * [Ergänzende Bedingungen der Elektrizitätsgesellschaft Levern eG](/pdf/2015_Ergaenzende_Bedingungen.pdf)
 * [Preisblatt zu den Ergänzenden Bedingungen der Elektrizitätsgesellschaft Levern eG](/pdf/2015_Preisbaltt_Ergaenzende_Bedingungen.pdf)
 
-# Kennzeichnung der Stromlieferungen (Energiemix)
+# Kennzeichnung der Stromlieferungen (Energiemix) 2023
 
 <style>
 .energy-mix-table {
