@@ -73,36 +73,36 @@ _Stand: 11. November 2024._
     </tr>
     <tr>
         <th>Kernkraft</th>
-        <td>27,9 %</td>
+        <td>3,1 %</td>
     </tr>
     <tr>
         <th>Kohle</th>
-        <td>56,6 %</td>
+        <td>75,7 %</td>
     </tr>
     <tr>
         <th>Erdgas</th>
-        <td>12,9 %</td>
+        <td>18,3 %</td>
     </tr>
     <tr>
         <th>Sonstige fossile Energieträger</th>
-        <td>1,8 %</td>
+        <td>2,1 %</td>
     </tr>
     <tr>
         <th>Erneuerbare Energien<br>(aus Ersatzgröße des ENTSO-E-Mixes)</th>
-        <td>0,8 %</td>
+        <td>1,0 %</td>
     </tr>
     <tr>
         <th>CO2-Faktor (spezifisch)</th>
-        <td>634 g/kWh</td>
+        <td>884 g/kWh</td>
     </tr>
     <tr>
         <th>Radioaktiver Abfall</th>
-        <td>0,000750 g/kWh</td>
+        <td>0,000 1 g/kWh</td>
     </tr>
 </table>
 
 <p style="font-size: 0.9em; color: #666;">
-Stand: 30.08.2022<br>
+Stand: 16.01.2025<br>
 Quelle: <a href="https://www.bdew.de/service/datenplattform-stromkennzeichnung">https://www.bdew.de/service/datenplattform-stromkennzeichnung</a>
 </p>
 
