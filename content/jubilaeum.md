@@ -24,19 +24,19 @@ Schrankes bemalt worden. Erste Stromkästen sind im Ort zu bewundern.
 
 {{< gallery >}}
 <div class="column">
-  <img src="/images/jubilaeum/IMG_7293.JPG" onclick="gallery_expand(this)" >
-  <img src="/images/jubilaeum/IMG_7234.JPG" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7293.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7234.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
 </div>
 <div class="column">
-  <img src="/images/jubilaeum/IMG_7231.jpg" onclick="gallery_expand(this)" >
-  <img src="/images/jubilaeum/IMG_7121.JPG" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7231.jpg" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7121.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
 </div>
 <div class="column">
-  <img src="/images/jubilaeum/IMG_7271.JPG" onclick="gallery_expand(this)" >
-  <img src="/images/jubilaeum/IMG_6936.JPG" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7271.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_6936.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
 </div>
 <div class="column">
-  <img src="/images/jubilaeum/IMG_7298.JPG" onclick="gallery_expand(this)" >
+  <img src="/images/jubilaeum/IMG_7298.JPG" alt="Bemalte Zaehlerkasten" onclick="gallery_expand(this)" >
 </div>
 {{< /gallery >}}
 

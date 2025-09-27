@@ -58,6 +58,8 @@
     var expandImg = document.getElementById("gallery_img");
     // Use the same src in the expanded image as the image being clicked on from the grid
     expandImg.src = imgs.src;
+    // Copy ALT text from source image
+    expandImg.alt = imgs.alt;
     // Show the container element (hidden with CSS)
     expandImg.parentElement.style.display = "block";
   }
@@ -69,5 +71,5 @@
 
 <div class="lightbox" onclick="this.style.display='none'">
   <!-- Expanded image -->
-  <img id="gallery_img" onclick="this.parentElement.style.display='none'">
+  <img id="gallery_img" alt="" onclick="this.parentElement.style.display='none'">
 </div> 
