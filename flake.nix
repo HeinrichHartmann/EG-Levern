@@ -17,6 +17,7 @@
             git-crypt
             hugo
             awscli
+            poppler
           ];
         };
       }

@@ -3,29 +3,29 @@ title: "Strom"
 header_image : "by_Heidi_Helmich/y_IMG_9646.jpg"
 ---
 
-# Tarife 2025
+# Tarife 2026
 
-{{< price-tiles 
+{{< price-tiles
     strompreis="36,00"
     stromprice_unit="Cent/kWh"
     grundpreis="144,00"
     grundpreis_unit="EUR/Jahr"
     netto_strom="30,25"
     netto_grund="121,01"
-    preisblatt_url="/pdf/2025-Preisblatt-Strom-Grund-Ersatzversorung.pdf"
+    preisblatt_url="/pdf/2026-Preisblatt-Strom-Grund-Ersatzversorgung.pdf"
 >}}
 
-* [Preisblatt für Levern Strom Grund- und Ersatzversorgung](/pdf/2025-Preisblatt-Strom-Grund-Ersatzversorung.pdf)
-* [Preisblatt für Levern Strom Wärmespeicher](/pdf/2025-Preisblatt-Strom-Waermespeicher.pdf)
-* [Preisblatt für Levern Strom Wärmepumpe](/pdf/2025-Preisblatt-Strom-Waermepumpe.pdf)
-* [Archiv: Stromtarife 2024](2024/)
+* [Preisblatt für Levern Strom Grund- und Ersatzversorgung](/pdf/2026-Preisblatt-Strom-Grund-Ersatzversorgung.pdf)
+* [Preisblatt für Levern Strom Wärmespeicher](/pdf/2026-Preisblatt-Strom-Waermespeicher.pdf)
+* [Preisblatt für Levern Strom Wärmepumpe](/pdf/2026-Preisblatt-Strom-Waermepumpe.pdf)
+* [Archiv: Stromtarife 2025](2025/)
 
 
 <div class="my-8 text-sm text-gray-600">
-* Bruttopreis inkl. 19% USt. Siehe <a href="/pdf/2025-Preisblatt-Strom-Grund-Ersatzversorung.pdf">Preisblatt für Levern Strom Grund- und Ersatzversorgung</a> für Details.<br>
-</div> 
+* Bruttopreis inkl. 19% USt. Siehe <a href="/pdf/2026-Preisblatt-Strom-Grund-Ersatzversorgung.pdf">Preisblatt für Levern Strom Grund- und Ersatzversorgung</a> für Details.<br>
+</div>
 
-_Stand: 11. November 2024._
+_Stand: 11. November 2025._
 
 # Vermerke
 

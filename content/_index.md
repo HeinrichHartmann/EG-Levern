@@ -11,20 +11,20 @@ subtitle: "Grundversorger für Strom im Ortsteil Levern der Gemeinde Stemwede"
 # Aktuelle Mitteilungen
 
 {{< announcement-cards >}}
-- date: "11. November 2024"
-  title: "Strompreissenkung zum 1. Januar 2025"
+- date: "11. November 2025"
+  title: "Stromtarife 2026 – Preise stabil"
   content: |
-    Die EG Levern senkt ihren Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif zum 1. Januar 2025 auf **36,0 ct./kWh** inkl. 19% Mehrwertsteuer.
-    
-    [Stromtarife für 2025 ansehen](/strom/2025/)
+    Die Stromtarife der EG Levern bleiben vorerst unverändert. Der Arbeitspreis für Ökostrom im Grund- und Ersatzversorgungstarif beträgt ab dem 1. Januar 2026 weiterhin **36,0 ct./kWh** inkl. 19% Mehrwertsteuer.
 
-- date: "15. Dezember 2024"
-  title: "Zählerablesung"
+    [Stromtarife für 2026 ansehen](/strom/2026/)
+
+- date: "11. November 2025"
+  title: "Zählerablesung Dezember 2025 - Januar 2026"
   content: |
-    Die Ablesung der Stromzähler erfolgt in der Zeit vom 15. Dezember 2024 bis 5. Januar 2025 im Auftrag der Westnetz GmbH. Auf Wunsch weisen sich die Mitarbeiter aus.
-    
-    Sollte dieses Ableseverfahren bei Ihnen nicht möglich sein, bitten wir um schnellstmögliche Rücksendung der Ablesekarte bzw. um Angabe des Zählerstandes mit Ablesedatum per:
-    * Telefon 05745-300082 
+    Die Ablesung der Stromzähler erfolgt ab 18. Dezember 2025 bis 5. Januar 2026 im Auftrag der Westnetz GmbH. Auf Wunsch weisen sich die Mitarbeiterinnen und Mitarbeiter aus.
+
+    Sollte dieses Ableseverfahren nicht möglich sein, bitten wir um schnellstmögliche Rücksendung der Ablesekarte bzw. um Angabe des Zählerstandes mit Ablesedatum per:
+    * Telefon 05745-300082
     * E-Mail an [info@eg-levern.de](mailto:info@eg-levern.de)
 
 - date: "Wichtiger Sicherheitshinweis"
