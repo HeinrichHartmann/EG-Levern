@@ -68,11 +68,12 @@ deploy-dev: build-dev
 # =============================================================================
 # Infrastructure (OpenTofu) -- see infra/README.md
 #
-# Two root modules with separate state. `infra/` holds the buckets and
-# distributions and is planned/applied with the deploy credentials above.
-# `infra/iam/` holds the dev_infra_automation IAM user and needs Heinrich's
-# own privileged identity, so it deliberately has no target here -- run it
-# via infra/scripts/with-bw-admin.sh.
+# Two root modules with separate state, two privilege tiers:
+#   infra/      the buckets and distributions; planned/applied with the
+#               deploy credentials above (routine, unattended-safe).
+#   infra/iam/  the dev_infra_automation user; needs Heinrich's own
+#               privileged identity, fetched from Bitwarden on demand by
+#               infra/scripts/with-bw-admin.sh -- never written to disk.
 # =============================================================================
 
 .PHONY: infra-plan
@@ -82,3 +83,11 @@ infra-plan:
 .PHONY: infra-apply
 infra-apply:
 	cd infra && tofu apply
+
+.PHONY: infra-iam-plan
+infra-iam-plan:
+	cd infra/iam && ../scripts/with-bw-admin.sh tofu plan
+
+.PHONY: infra-iam-apply
+infra-iam-apply:
+	cd infra/iam && ../scripts/with-bw-admin.sh tofu apply
