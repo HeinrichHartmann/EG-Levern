@@ -23,6 +23,7 @@ manages the hosting, never the page content.
 | `providers.tf` | Version pins, S3 state backend, the two AWS providers |
 | `prod.tf` | Production, **all imported** from the pre-existing console setup |
 | `dev.tf` | Dev environment, created by this configuration |
+| `iam.tf` | The `dev_infra_automation` role hh.com assumes for ACM/Route 53 |
 | `variables.tf` | Inputs, including the dev certificate/DNS switches |
 | `outputs.tf` | Bucket + distribution ids, and the DNS handover values |
 | `dev-robots.txt` | Uploaded to the dev bucket only, by `make deploy-dev` |
@@ -141,6 +142,22 @@ The deploy IAM user `hh.com` is missing three permissions. Nothing below can
 be automated until they are granted; none of it blocks using the dev
 environment on its CloudFront domain today.
 
+None of these should ever be granted to `hh.com` directly, including by
+hand in the console. `hh.com` runs unattended deploys; a principal that can
+request certificates and change DNS is one `iam:CreateRole` away from full
+account takeover, and this is exactly the kind of standing permission that
+turns a compromised deploy credential into a compromised account. `iam.tf`
+instead defines `dev_infra_automation`, a role scoped to just the ACM/Route
+53 actions below, which `hh.com` may reach only via `sts:AssumeRole`. The
+one new permission `hh.com`'s own policy needs is that single
+`sts:AssumeRole` grant on that one role ARN — never the underlying
+`acm:*`/`route53:*` actions themselves.
+
+Applying `iam.tf` and granting that `sts:AssumeRole` permission are both IAM
+administration. Both require Heinrich's own privileged AWS identity — never
+`hh.com`'s credentials, and not anything an agent holds, since none of this
+repo's automation has (or should have) standing AWS access.
+
 ### 1. DNS — `route53:*` is denied
 
 ```
@@ -169,12 +186,22 @@ a variable instead of using a `data "aws_acm_certificate"` lookup.
 
 Pick one of the two routes, then do step 3 and 4 either way.
 
-**Route A — grant the permission and let OpenTofu do it (preferred).** Add
-`acm:RequestCertificate` (and ideally `acm:GetCertificate`, `acm:DeleteCertificate`)
-to `hh.com`, then:
+**Route A — apply the automation role and let OpenTofu do it (preferred).**
+With your own privileged AWS identity:
 
 ```sh
 cd infra
+tofu apply -target=aws_iam_role.dev_infra_automation -target=aws_iam_role_policy.dev_infra_automation
+tofu output dev_infra_automation_role_arn
+```
+
+Then grant `hh.com`'s own policy `sts:AssumeRole` on that one ARN (nothing
+else — see "Manual steps only Heinrich can do" above for why), and point
+OpenTofu's AWS provider at it (e.g. an `assume_role` block, or an AWS CLI
+profile with `role_arn` + `source_profile` in `~/.aws/config`). From then
+on:
+
+```sh
 tofu apply -var dev_manage_certificate=true
 tofu output dev_dns_records_for_heinrich   # prints the validation record
 ```
