@@ -1,50 +1,47 @@
 # =============================================================================
-# IAM -- a narrowly-scoped role so the deploy user never holds ACM/Route 53
-# permissions directly
+# IAM -- a dedicated user for this premise (EG-Levern), scoped to exactly
+# what OpenTofu needs for the dev certificate and its DNS records.
 #
 # hh.com is already denied acm:RequestCertificate and all route53:* (see
-# README.md). The fix is not to widen hh.com's own policy with those
-# actions: hh.com runs unattended deploys, and a principal that can request
-# certificates and change DNS for eg-levern.de is one step away from a
-# principal that could escalate to full account control, if it or anything
-# using its credentials ever also held iam:CreateRole / iam:PutRolePolicy.
-# This configuration deliberately never asks for that permission, and it
-# should never be granted to hh.com by hand either.
+# README.md), and stays that way: hh.com runs unattended deploys, and a
+# principal that can request certificates and change DNS for eg-levern.de
+# is one step away from a principal that could escalate to full account
+# control, if it or anything using its credentials ever also held
+# iam:CreateRole / iam:PutRolePolicy. Widening hh.com's policy, or routing
+# through hh.com via sts:AssumeRole, both mean sharing this capability with
+# whatever already holds hh.com's credentials (unattended deploys, any
+# agent that runs them). Instead this premise gets its own standing
+# identity, used for nothing else, so the permission below never has to be
+# shared with a broader-purpose principal.
 #
-# Instead: a role scoped to exactly what OpenTofu needs for the dev
-# certificate and its DNS records, which hh.com may reach only via
-# sts:AssumeRole. That is the single, narrow, revocable permission hh.com's
-# policy needs -- not a standing acm:*/route53:* allowance.
-#
-# Creating or changing this role is itself IAM administration. Apply it with
-# Heinrich's own privileged AWS identity, never with hh.com's credentials --
-# an automation user must never be able to create or alter IAM roles,
-# including this one. See README.md, "Manual steps only Heinrich can do".
+# Creating or changing this user is itself IAM administration. Apply it
+# with Heinrich's own privileged AWS identity, never with hh.com's
+# credentials -- an automation user must never be able to create or alter
+# IAM users/policies, including this one. See README.md, "Manual steps
+# only Heinrich can do".
 # =============================================================================
 
-data "aws_caller_identity" "current" {}
+resource "aws_iam_user" "dev_infra_automation" {
+  name = "eg-levern-dev-infra-automation"
 
-resource "aws_iam_role" "dev_infra_automation" {
-  name        = "eg-levern-dev-infra-automation"
-  description = <<-EOT
-    Assumed by hh.com to request the dev.eg-levern.de certificate and manage
-    its DNS records. Created and changed only by Heinrich's own AWS
-    identity -- never by hh.com.
-  EOT
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Effect    = "Allow"
-      Principal = { AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/hh.com" }
-      Action    = "sts:AssumeRole"
-    }]
-  })
+  tags = {
+    Premise = "eg-levern"
+  }
 }
 
-resource "aws_iam_role_policy" "dev_infra_automation" {
+# The secret access key below lands in this user's state file
+# (s3://eg-levern-tofu-state), which is private and encrypted but still
+# plaintext within the state itself, including in older object versions
+# after a rotation. If that's unacceptable, drop this resource and the two
+# access-key outputs, and create the access key by hand in the console
+# instead -- aws_iam_user and aws_iam_user_policy above are unaffected.
+resource "aws_iam_access_key" "dev_infra_automation" {
+  user = aws_iam_user.dev_infra_automation.name
+}
+
+resource "aws_iam_user_policy" "dev_infra_automation" {
   name = "dev-certificate-and-dns"
-  role = aws_iam_role.dev_infra_automation.id
+  user = aws_iam_user.dev_infra_automation.name
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -99,11 +96,18 @@ resource "aws_iam_role_policy" "dev_infra_automation" {
   })
 }
 
-output "dev_infra_automation_role_arn" {
+output "dev_infra_automation_access_key_id" {
+  description = "Access key ID for the dedicated eg-levern-dev-infra-automation user."
+  value       = aws_iam_access_key.dev_infra_automation.id
+}
+
+output "dev_infra_automation_secret_access_key" {
   description = <<-EOT
-    ARN hh.com's own policy needs sts:AssumeRole on -- the only permission
-    hh.com gains from this ticket. Grant it with Heinrich's own AWS
-    identity, same as applying this file.
+    Secret access key for the dedicated eg-levern-dev-infra-automation
+    user. Retrieve with `tofu output -raw dev_infra_automation_secret_access_key`
+    and store it directly in ~/box/secrets/ -- never print it to a
+    terminal you're sharing or paste it into chat.
   EOT
-  value       = aws_iam_role.dev_infra_automation.arn
+  value       = aws_iam_access_key.dev_infra_automation.secret
+  sensitive   = true
 }
