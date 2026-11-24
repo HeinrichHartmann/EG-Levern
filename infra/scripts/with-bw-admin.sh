@@ -3,9 +3,9 @@
 # fetched from Bitwarden instead of a plaintext file on disk.
 #
 # Never use this for routine deploys -- it's only for IAM administration
-# (iam.tf, granting hh.com sts:AssumeRole, etc). See infra/README.md,
-# "Manual steps only Heinrich can do", and iam.tf's header comment for why
-# hh.com must never hold these credentials.
+# (applying iam.tf, etc). See infra/README.md, "Manual steps only Heinrich
+# can do", and iam.tf's header comment for why hh.com must never hold these
+# credentials.
 #
 # Usage:
 #   infra/scripts/with-bw-admin.sh tofu apply

@@ -23,7 +23,7 @@ manages the hosting, never the page content.
 | `providers.tf` | Version pins, S3 state backend, the two AWS providers |
 | `prod.tf` | Production, **all imported** from the pre-existing console setup |
 | `dev.tf` | Dev environment, created by this configuration |
-| `iam.tf` | The `dev_infra_automation` role hh.com assumes for ACM/Route 53 |
+| `iam.tf` | The dedicated `eg-levern-dev-infra-automation` IAM user for ACM/Route 53 |
 | `variables.tf` | Inputs, including the dev certificate/DNS switches |
 | `outputs.tf` | Bucket + distribution ids, and the DNS handover values |
 | `dev-robots.txt` | Uploaded to the dev bucket only, by `make deploy-dev` |
@@ -147,16 +147,17 @@ hand in the console. `hh.com` runs unattended deploys; a principal that can
 request certificates and change DNS is one `iam:CreateRole` away from full
 account takeover, and this is exactly the kind of standing permission that
 turns a compromised deploy credential into a compromised account. `iam.tf`
-instead defines `dev_infra_automation`, a role scoped to just the ACM/Route
-53 actions below, which `hh.com` may reach only via `sts:AssumeRole`. The
-one new permission `hh.com`'s own policy needs is that single
-`sts:AssumeRole` grant on that one role ARN — never the underlying
-`acm:*`/`route53:*` actions themselves.
+instead defines `dev_infra_automation`, a dedicated IAM user scoped to just
+the ACM/Route 53 actions below and used for nothing else — not assumed by
+`hh.com`, not reachable through it in any way, so this capability never has
+to be shared with the principal that runs unattended deploys.
 
-Applying `iam.tf` and granting that `sts:AssumeRole` permission are both IAM
-administration. Both require Heinrich's own privileged AWS identity — never
-`hh.com`'s credentials, and not anything an agent holds, since none of this
-repo's automation has (or should have) standing AWS access.
+Applying `iam.tf` is IAM administration. It requires Heinrich's own
+privileged AWS identity — never `hh.com`'s credentials, and not anything an
+agent holds, since none of this repo's automation has (or should have)
+standing AWS access. `infra/scripts/with-bw-admin.sh` runs a command with
+that identity pulled from Bitwarden, so it never has to live in a file on
+disk.
 
 ### 1. DNS — `route53:*` is denied
 
@@ -186,23 +187,28 @@ a variable instead of using a `data "aws_acm_certificate"` lookup.
 
 Pick one of the two routes, then do step 3 and 4 either way.
 
-**Route A — apply the automation role and let OpenTofu do it (preferred).**
-With your own privileged AWS identity:
+**Route A — apply the dedicated automation user and let OpenTofu do it
+(preferred).** With your own privileged AWS identity, e.g. via the
+Bitwarden-backed helper so the credentials never touch disk:
 
 ```sh
 cd infra
-tofu apply -target=aws_iam_role.dev_infra_automation -target=aws_iam_role_policy.dev_infra_automation
-tofu output dev_infra_automation_role_arn
+infra/scripts/with-bw-admin.sh tofu apply \
+  -target=aws_iam_user.dev_infra_automation \
+  -target=aws_iam_access_key.dev_infra_automation \
+  -target=aws_iam_user_policy.dev_infra_automation
+tofu output dev_infra_automation_access_key_id
+tofu output -raw dev_infra_automation_secret_access_key   # store in ~/box/secrets/, never paste into chat
 ```
 
-Then grant `hh.com`'s own policy `sts:AssumeRole` on that one ARN (nothing
-else — see "Manual steps only Heinrich can do" above for why), and point
-OpenTofu's AWS provider at it (e.g. an `assume_role` block, or an AWS CLI
-profile with `role_arn` + `source_profile` in `~/.aws/config`). From then
-on:
+Save that access key as its own credentials file (e.g.
+`~/box/secrets/aws-credentials-eg-levern-dev-infra-automation`), then use
+it — not `hh.com`'s, not your own — for the certificate and DNS steps that
+follow:
 
 ```sh
-tofu apply -var dev_manage_certificate=true
+AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern-dev-infra-automation \
+  tofu apply -var dev_manage_certificate=true
 tofu output dev_dns_records_for_heinrich   # prints the validation record
 ```
 

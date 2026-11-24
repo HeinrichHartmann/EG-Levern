@@ -73,10 +73,10 @@ variable "dev_custom_domain_enabled" {
 variable "eg_levern_hosted_zone_id" {
   description = <<-EOT
     Route 53 hosted zone ID for eg-levern.de, used in iam.tf to scope the
-    dev_infra_automation role's DNS permissions to that one zone. Find it
+    dev_infra_automation user's DNS permissions to that one zone. Find it
     under Route 53 -> Hosted zones in the console.
 
-    Left empty (the role then falls back to every zone in the account)
+    Left empty (the policy then falls back to every zone in the account)
     only because nobody with Route 53 read access has looked it up yet --
     fill it in as soon as you have it.
   EOT
