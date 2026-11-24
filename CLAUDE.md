@@ -36,6 +36,16 @@ EG-Levern is a Hugo-based static website for a German energy cooperative (Energi
 │   ├── cert/            # Certificate files
 │   └── desktopdefault.aspx/ # Legacy ASP.NET files
 ├── archetypes/          # Content templates for new pages
+├── infra/               # OpenTofu: S3 + CloudFront for prod and dev
+│   ├── README.md        # How to plan/apply, and the manual DNS steps
+│   ├── providers.tf     # Version pins, S3 state backend, AWS providers
+│   ├── prod.tf          # Production (imported, do not replace)
+│   ├── dev.tf           # dev.eg-levern.de review environment
+│   ├── variables.tf     # Inputs
+│   ├── outputs.tf       # Bucket/distribution ids, expected DNS values
+│   ├── dev-robots.txt   # Dev-only robots.txt (Disallow: /)
+│   ├── scripts/         # with-bw-admin.sh: run tofu as Heinrich's admin identity
+│   └── iam/             # Separate root module + state: the automation IAM user
 └── Makefile            # Build and deployment automation
 ```
 
@@ -49,8 +59,21 @@ make serve              # Start Hugo dev server on http://localhost:1314
 ### Build & Deploy
 ```bash
 make build             # Build static site to ./public/
-make deploy            # Build and deploy to AWS S3 + invalidate CDN
+make deploy            # Build and deploy to PRODUCTION S3 + invalidate CDN
 make diff              # Compare local build with live S3 content
+```
+
+### Dev / review environment
+```bash
+make build-dev         # Build with the dev baseURL
+make deploy-dev        # Deploy to dev.eg-levern.de + invalidate its CDN
+make diff-dev          # Compare local build with the dev bucket
+```
+
+### Infrastructure (OpenTofu)
+```bash
+make infra-plan        # tofu plan in ./infra
+make infra-apply       # tofu apply in ./infra
 ```
 
 ### Hugo Commands
@@ -72,10 +95,56 @@ hugo                                        # Build static site
 - Static assets served from `/static/` directory
 
 ## Deployment Details
+
+Two environments, both S3 website hosting behind CloudFront. The hosting is
+defined as code in `infra/` (OpenTofu) — see `infra/README.md`.
+
+### Production — the live site, real customers
 - **Target**: AWS S3 bucket `s3://eg-levern.de`
 - **CDN**: CloudFront distribution `E1RRMW11A78TZM`
-- **AWS Credentials**: Configured via `AWS_SHARED_CREDENTIALS_FILE`
-- **CDN Invalidation**: Manual via AWS Console or automated via `make deploy`
+- **URL**: https://eg-levern.de (+ `www.`)
+- **Deploy**: `make deploy`. This goes straight to production — get explicit
+  human approval for the specific change first.
+
+### Dev — review environment
+- **Target**: AWS S3 bucket `s3://dev.eg-levern.de`
+- **CDN**: CloudFront distribution `E1SL20ASNAYEAH`
+- **URL**: https://dev.eg-levern.de (CloudFront domain
+  `d2thkgludxk7z8.cloudfront.net` still works as a fallback)
+- **Deploy**: `make deploy-dev`. Safe to use freely; never touches prod.
+- Kept out of search engines by an `X-Robots-Tag: noindex, nofollow` response
+  headers policy plus a dev-only `robots.txt`. Production has no `robots.txt`.
+
+### Shared
+- **AWS Credentials**: deploys and `infra/` use `AWS_SHARED_CREDENTIALS_FILE`
+  (`~/box/secrets/aws-credentials-hhcom`, outside the repo). Certificate and
+  DNS work uses a separate, narrowly-scoped identity
+  (`~/box/secrets/aws-credentials-eg-levern`); `infra/iam/` needs Heinrich's
+  own admin identity. See `infra/README.md`, "Permissions and who can do what".
+- **CDN Invalidation**: automated by `make deploy` / `make deploy-dev`
+- **DNS**: manual, not in IaC. The deploy IAM user has no Route 53 access;
+  the scoped automation user can read/write the `eg-levern.de` zone
+  (`Z04680512670ECR8ZN9DQ`).
+- Builds use `--cleanDestinationDir`: deploys are `s3 cp --recursive`, which
+  never deletes, so stale files in `./public/` would otherwise live forever.
+
+## Infrastructure as Code
+- Two OpenTofu root modules with **separate state**:
+  - `infra/` — buckets and distributions for both environments. Planned and
+    applied routinely with the deploy credentials.
+  - `infra/iam/` — the `eg-levern-dev-infra-automation` user and its policy.
+    Needs Heinrich's own admin identity, so it is kept out of `infra/`: a
+    single state file is refreshed in full on every plan, and having IAM in
+    it made `tofu plan` fail for the deploy user entirely.
+- Production resources are **imported**, matching what was built by hand in
+  the console in 2021; `tofu plan` is expected to report no changes for them.
+  A plan that proposes replacing `aws_cloudfront_distribution.prod` is a bug,
+  not something to approve — it would take the cooperative's site offline.
+- Both ACM certificates are referenced by ARN, never managed, so no plan can
+  replace a certificate the live sites depend on.
+- State lives in `s3://eg-levern-tofu-state` (private, versioned), never in
+  this repo — the GitHub repository is public
+- `tofu` comes from the Nix dev shell (`nix develop`)
 
 ## Development Environment
 - Uses Nix flake for reproducible development environment

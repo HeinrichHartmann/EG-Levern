@@ -1,0 +1,6 @@
+# Uploaded to the dev bucket by `make deploy-dev`, never to production.
+# dev.eg-levern.de serves a copy of a real cooperative's site; it must not
+# be indexed. The dev CloudFront distribution also sends
+# `X-Robots-Tag: noindex, nofollow`.
+User-agent: *
+Disallow: /
