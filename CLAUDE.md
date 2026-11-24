@@ -42,8 +42,10 @@ EG-Levern is a Hugo-based static website for a German energy cooperative (Energi
 │   ├── prod.tf          # Production (imported, do not replace)
 │   ├── dev.tf           # dev.eg-levern.de review environment
 │   ├── variables.tf     # Inputs
-│   ├── outputs.tf       # Bucket/distribution ids, DNS handover values
-│   └── dev-robots.txt   # Dev-only robots.txt (Disallow: /)
+│   ├── outputs.tf       # Bucket/distribution ids, expected DNS values
+│   ├── dev-robots.txt   # Dev-only robots.txt (Disallow: /)
+│   ├── scripts/         # with-bw-admin.sh: run tofu as Heinrich's admin identity
+│   └── iam/             # Separate root module + state: the automation IAM user
 └── Makefile            # Build and deployment automation
 ```
 
@@ -107,27 +109,39 @@ defined as code in `infra/` (OpenTofu) — see `infra/README.md`.
 ### Dev — review environment
 - **Target**: AWS S3 bucket `s3://dev.eg-levern.de`
 - **CDN**: CloudFront distribution `E1SL20ASNAYEAH`
-- **URL**: https://d2thkgludxk7z8.cloudfront.net — `dev.eg-levern.de` itself
-  needs a DNS record and a certificate that only Heinrich can create
-  (`infra/README.md` has the exact steps)
+- **URL**: https://dev.eg-levern.de (CloudFront domain
+  `d2thkgludxk7z8.cloudfront.net` still works as a fallback)
 - **Deploy**: `make deploy-dev`. Safe to use freely; never touches prod.
 - Kept out of search engines by an `X-Robots-Tag: noindex, nofollow` response
   headers policy plus a dev-only `robots.txt`. Production has no `robots.txt`.
 
 ### Shared
-- **AWS Credentials**: Configured via `AWS_SHARED_CREDENTIALS_FILE`
-  (`~/box/secrets/aws-credentials-hhcom`, outside the repo)
+- **AWS Credentials**: deploys and `infra/` use `AWS_SHARED_CREDENTIALS_FILE`
+  (`~/box/secrets/aws-credentials-hhcom`, outside the repo). Certificate and
+  DNS work uses a separate, narrowly-scoped identity
+  (`~/box/secrets/aws-credentials-eg-levern`); `infra/iam/` needs Heinrich's
+  own admin identity. See `infra/README.md`, "Permissions and who can do what".
 - **CDN Invalidation**: automated by `make deploy` / `make deploy-dev`
-- **DNS**: manual. The deploy IAM user has no Route 53 access, so no DNS is
-  managed in IaC.
+- **DNS**: manual, not in IaC. The deploy IAM user has no Route 53 access;
+  the scoped automation user can read/write the `eg-levern.de` zone
+  (`Z04680512670ECR8ZN9DQ`).
 - Builds use `--cleanDestinationDir`: deploys are `s3 cp --recursive`, which
   never deletes, so stale files in `./public/` would otherwise live forever.
 
 ## Infrastructure as Code
-- `infra/` holds the OpenTofu configuration: `providers.tf`, `prod.tf`,
-  `dev.tf`, `variables.tf`, `outputs.tf`
+- Two OpenTofu root modules with **separate state**:
+  - `infra/` — buckets and distributions for both environments. Planned and
+    applied routinely with the deploy credentials.
+  - `infra/iam/` — the `eg-levern-dev-infra-automation` user and its policy.
+    Needs Heinrich's own admin identity, so it is kept out of `infra/`: a
+    single state file is refreshed in full on every plan, and having IAM in
+    it made `tofu plan` fail for the deploy user entirely.
 - Production resources are **imported**, matching what was built by hand in
-  the console in 2021; `tofu plan` is expected to report no changes for them
+  the console in 2021; `tofu plan` is expected to report no changes for them.
+  A plan that proposes replacing `aws_cloudfront_distribution.prod` is a bug,
+  not something to approve — it would take the cooperative's site offline.
+- Both ACM certificates are referenced by ARN, never managed, so no plan can
+  replace a certificate the live sites depend on.
 - State lives in `s3://eg-levern-tofu-state` (private, versioned), never in
   this repo — the GitHub repository is public
 - `tofu` comes from the Nix dev shell (`nix develop`)

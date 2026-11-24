@@ -7,9 +7,12 @@ node_modules/
 
 # OpenTofu: state is kept in S3, never in this (public) repo.
 # .terraform.lock.hcl is intentionally NOT ignored -- it is committed.
+# The `**` patterns matter: there is more than one root module (infra/ and
+# infra/iam/), so `infra/.terraform/` alone would miss the nested one.
+infra/**/.terraform/
 infra/.terraform/
-infra/*.tfstate
-infra/*.tfstate.*
-infra/*.tfplan
-infra/*.tfvars
-!infra/*.tfvars.example
+infra/**/*.tfstate
+infra/**/*.tfstate.*
+infra/**/*.tfplan
+infra/**/*.tfvars
+!infra/**/*.tfvars.example

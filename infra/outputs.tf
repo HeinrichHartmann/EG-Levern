@@ -28,7 +28,7 @@ output "dev_distribution_id" {
 output "dev_url" {
   description = <<-EOT
     Where to review the dev site. Falls back to the *.cloudfront.net domain
-    until a certificate exists and dev_custom_domain_enabled is turned on.
+    if dev_custom_domain_enabled is turned off again.
   EOT
   value       = local.dev_alias_enabled ? "https://${var.dev_domain}/" : "https://${aws_cloudfront_distribution.dev.domain_name}/"
 }
@@ -39,19 +39,22 @@ output "dev_cloudfront_domain" {
 }
 
 # -----------------------------------------------------------------------------
-# Manual DNS handover -- see infra/README.md
+# DNS reference -- see infra/README.md
 #
-# The deploy IAM user has no Route 53 access, so these records have to be
-# created by hand. Printing them here means nobody has to dig them out of
-# the ACM console.
+# DNS is not managed by this configuration (the deploy user has no Route 53
+# access; the dev_infra_automation user in infra/iam/ does). These records
+# already exist. Kept as an output so the expected values can be checked
+# against the live zone without digging through the console, and so the
+# alias target is to hand if the dev distribution is ever recreated.
 # -----------------------------------------------------------------------------
 
 output "dev_dns_records_for_heinrich" {
-  description = "Records Heinrich must create in the eg-levern.de hosted zone."
+  description = "Records that must exist in the eg-levern.de hosted zone for dev."
   value = {
-    # Empty while `dev_manage_certificate` is false -- the deploy user
-    # cannot request the certificate, so there is no validation record to
-    # report yet. The ACM console shows it when the cert is made by hand.
+    # Empty while `dev_manage_certificate` is false, which is the normal
+    # state: the certificate is referenced by ARN, not managed here, so
+    # OpenTofu has no validation options to report. The record already
+    # exists in the zone; the ACM console shows it.
     acm_validation = flatten([
       for cert in aws_acm_certificate.dev[*] : [
         for o in cert.domain_validation_options : {

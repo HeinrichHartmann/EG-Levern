@@ -90,19 +90,19 @@ resource "aws_cloudfront_response_headers_policy" "dev_noindex" {
 # -----------------------------------------------------------------------------
 # TLS
 #
-# Off by default: the deploy user cannot request certificates.
+# The dev certificate already exists and is ISSUED. It was requested out of
+# band with the dev_infra_automation user's credentials, so this
+# configuration references it by ARN (var.dev_certificate_arn) rather than
+# managing it -- the same arrangement as the production certificate, and the
+# reason dev_manage_certificate stays false. Setting it to true would request
+# a second, redundant certificate for the same name.
 #
-#   AccessDeniedException: User: arn:aws:iam::710931427457:user/hh.com is not
-#   authorized to perform: acm:RequestCertificate
-#
-# So until Heinrich either grants acm:RequestCertificate (then set
-# dev_manage_certificate = true) or creates the certificate by hand (then set
-# dev_certificate_arn), dev is served over its *.cloudfront.net domain, which
-# needs no certificate of ours at all. See infra/README.md.
+# The resource below is kept only so the certificate *can* be brought under
+# management later (or recreated from scratch in another account) without
+# rewriting dev.tf.
 #
 # There is deliberately no aws_acm_certificate_validation resource: it would
-# block `tofu apply` for up to an hour waiting on a DNS record that only
-# Heinrich can write (the deploy user has no Route 53 access either).
+# block `tofu apply` for up to an hour waiting on DNS.
 # -----------------------------------------------------------------------------
 
 resource "aws_acm_certificate" "dev" {

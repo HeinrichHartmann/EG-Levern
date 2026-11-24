@@ -11,24 +11,67 @@ manages the hosting, never the page content.
 |---|---|---|
 | Bucket | `eg-levern.de` | `dev.eg-levern.de` |
 | Distribution | `E1RRMW11A78TZM` | `E1SL20ASNAYEAH` |
-| URL | <https://eg-levern.de/> | <https://d2thkgludxk7z8.cloudfront.net/> |
-| Custom domain | yes (`eg-levern.de`, `www.`) | **not yet** — needs DNS, see below |
+| URL | <https://eg-levern.de/> | <https://dev.eg-levern.de/> |
+| CloudFront domain | `d6cay05t1kw8j.cloudfront.net` | `d2thkgludxk7z8.cloudfront.net` |
+| Custom domain | yes (`eg-levern.de`, `www.`) | yes (`dev.eg-levern.de`) |
 | Cache policy | Managed-CachingOptimized | Managed-CachingDisabled |
 | Indexable | yes | no (`X-Robots-Tag` + `robots.txt`) |
 
 ## Layout
+
+Two **separate root modules**, each with its own state file:
+
+### `infra/` — the hosting, applied with the deploy credentials
 
 | File | Contents |
 |---|---|
 | `providers.tf` | Version pins, S3 state backend, the two AWS providers |
 | `prod.tf` | Production, **all imported** from the pre-existing console setup |
 | `dev.tf` | Dev environment, created by this configuration |
-| `iam.tf` | The dedicated `eg-levern-dev-infra-automation` IAM user for ACM/Route 53 |
-| `variables.tf` | Inputs, including the dev certificate/DNS switches |
-| `outputs.tf` | Bucket + distribution ids, and the DNS handover values |
+| `variables.tf` | Inputs, including the dev certificate/domain switches |
+| `outputs.tf` | Bucket + distribution ids, and the expected DNS values |
 | `dev-robots.txt` | Uploaded to the dev bucket only, by `make deploy-dev` |
 
 Flat on purpose: there is no second site to share modules with yet.
+
+### `infra/iam/` — the automation identity, applied by Heinrich only
+
+| File | Contents |
+|---|---|
+| `iam.tf` | The dedicated `eg-levern-dev-infra-automation` user and its policy |
+| `providers.tf` | Its own state key, `eg-levern.de/iam.tfstate` |
+| `variables.tf` | The `eg-levern.de` hosted zone id the policy is scoped to |
+
+**Why this is split off rather than one more file in `infra/`.** OpenTofu
+refreshes every resource in a state file on every plan, so whoever plans a
+configuration needs read access to everything in it. With the IAM user in
+the same state as the buckets, `tofu plan` failed outright for the deploy
+user — not just for the IAM resources, for the whole run:
+
+```
+Error: reading IAM User (eg-levern-dev-infra-automation): api error
+AccessDenied: User: arn:aws:iam::710931427457:user/hh.com is not
+authorized to perform: iam:GetUser
+```
+
+which also broke `make infra-plan` and `make infra-apply`. The alternative
+— granting `hh.com` IAM read — would have put the deploy credential one
+policy edit away from reading the account's IAM layout, to work around a
+problem that separate state solves outright. Two states, two privilege
+tiers, no extra permissions.
+
+### The access key is not in OpenTofu
+
+`infra/iam/iam.tf` manages the user and its policy, but **not** its access
+key. An `aws_iam_access_key` resource stores the secret in plaintext in
+state — including in older object versions after any rotation — and AWS
+never returns a secret again after creation, so the resource also cannot be
+re-imported if state is ever rebuilt. The key is created by hand in the IAM
+console and saved to `~/box/secrets/aws-credentials-eg-levern`.
+
+The key currently in use is `AKIA2LBWQWCAYYHI24Q7`. To rotate: create a
+second key in the console, update that file, verify with
+`aws sts get-caller-identity`, then delete the old key. No OpenTofu involved.
 
 ## Running it
 
@@ -53,10 +96,12 @@ export AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-hhcom
 
 ### State
 
-Remote, in a dedicated private bucket in the same account:
+Remote, in a dedicated private bucket in the same account, one key per root
+module:
 
 ```
-s3://eg-levern-tofu-state/eg-levern.de/terraform.tfstate
+s3://eg-levern-tofu-state/eg-levern.de/terraform.tfstate   # infra/
+s3://eg-levern-tofu-state/eg-levern.de/iam.tfstate         # infra/iam/
 ```
 
 Versioned, AES256-encrypted, all public access blocked. Locking uses the S3
@@ -91,13 +136,25 @@ the plan comes out empty):
 - `aws_s3_bucket_policy.prod`
 - `aws_cloudfront_distribution.prod`
 
-**Managed** (created by this configuration): everything in `dev.tf`.
+**Managed** (created by this configuration): everything in `dev.tf`, except
+the certificate. `infra/iam/` manages the automation user and its policy.
 
-**Referenced, never created:** the production ACM certificate
-(`cc91ec3c-…`), pinned as `var.prod_certificate_arn`.
+**Referenced, never created:** both ACM certificates, pinned as
+`var.prod_certificate_arn` (`cc91ec3c-…`) and `var.dev_certificate_arn`
+(`bfa0102d-…`). Both are DNS-validated and `ISSUED`; neither is managed
+here, so no plan can ever replace a certificate the live sites depend on.
 
-**Not represented at all:** DNS (see below), and the production certificate's
-validation records.
+**Not represented at all:**
+
+- **DNS.** The `eg-levern.de` zone is `Z04680512670ECR8ZN9DQ`. The deploy
+  user has no Route 53 access at all; the `dev_infra_automation` user has
+  read/write scoped to that one zone. Records are managed by hand — the
+  apex and `www` A/ALIAS records, `dev.eg-levern.de`, and both
+  certificates' validation CNAMEs. `output dev_dns_records_for_heinrich`
+  prints what the dev records should look like.
+- **The state bucket** (`eg-levern-tofu-state`) — a backend cannot
+  bootstrap its own storage.
+- **The automation user's access key** — see above.
 
 > The production distribution must never be replaced — that takes the
 > cooperative's website offline. Treat any plan that proposes replacing
@@ -132,119 +189,122 @@ show members prices that are not in force. Two independent mechanisms:
 Verify both:
 
 ```sh
-curl -sI https://d2thkgludxk7z8.cloudfront.net/ | grep -i x-robots-tag
-curl -s  https://d2thkgludxk7z8.cloudfront.net/robots.txt
+curl -sI https://dev.eg-levern.de/ | grep -i x-robots-tag
+curl -s  https://dev.eg-levern.de/robots.txt
 ```
 
-## Manual steps only Heinrich can do
-
-The deploy IAM user `hh.com` is missing three permissions. Nothing below can
-be automated until they are granted; none of it blocks using the dev
-environment on its CloudFront domain today.
-
-None of these should ever be granted to `hh.com` directly, including by
-hand in the console. `hh.com` runs unattended deploys; a principal that can
-request certificates and change DNS is one `iam:CreateRole` away from full
-account takeover, and this is exactly the kind of standing permission that
-turns a compromised deploy credential into a compromised account. `iam.tf`
-instead defines `dev_infra_automation`, a dedicated IAM user scoped to just
-the ACM/Route 53 actions below and used for nothing else — not assumed by
-`hh.com`, not reachable through it in any way, so this capability never has
-to be shared with the principal that runs unattended deploys.
-
-Applying `iam.tf` is IAM administration. It requires Heinrich's own
-privileged AWS identity — never `hh.com`'s credentials, and not anything an
-agent holds, since none of this repo's automation has (or should have)
-standing AWS access. `infra/scripts/with-bw-admin.sh` runs a command with
-that identity pulled from Bitwarden, so it never has to live in a file on
-disk.
-
-### 1. DNS — `route53:*` is denied
-
-```
-AccessDenied: User: arn:aws:iam::710931427457:user/hh.com is not authorized
-to perform: route53:ListHostedZones
-```
-
-So the hosted zone cannot even be read, let alone imported. All DNS for
-eg-levern.de — the apex and `www` A/ALIAS records, and the production
-certificate's validation CNAMEs — stays manual and is not represented in
-this configuration.
-
-### 2. `acm:RequestCertificate` is denied
-
-So `dev.eg-levern.de` has no certificate, which is why the dev distribution
-currently serves its `*.cloudfront.net` domain with the default CloudFront
-certificate and has no alias attached.
-
-### 3. `acm:GetCertificate` is denied
-
-Minor: it is the only reason `prod.tf` pins the production certificate ARN in
-a variable instead of using a `data "aws_acm_certificate"` lookup.
-`acm:ListCertificates` and `acm:DescribeCertificate` *are* allowed.
-
-### Giving dev a real `https://dev.eg-levern.de` URL
-
-Pick one of the two routes, then do step 3 and 4 either way.
-
-**Route A — apply the dedicated automation user and let OpenTofu do it
-(preferred).** With your own privileged AWS identity, e.g. via the
-Bitwarden-backed helper so the credentials never touch disk:
+Expected: `x-robots-tag: noindex, nofollow`, and a `robots.txt` whose body
+ends in `Disallow: /`. Production must keep returning 404 for
+`/robots.txt` — if it ever does not, something has deployed the dev
+`robots.txt` to prod:
 
 ```sh
-cd infra
-infra/scripts/with-bw-admin.sh tofu apply \
-  -target=aws_iam_user.dev_infra_automation \
-  -target=aws_iam_access_key.dev_infra_automation \
-  -target=aws_iam_user_policy.dev_infra_automation
-tofu output dev_infra_automation_access_key_id
-tofu output -raw dev_infra_automation_secret_access_key   # store in ~/box/secrets/, never paste into chat
+curl -s -o /dev/null -w '%{http_code}\n' https://eg-levern.de/robots.txt   # 404
 ```
 
-Save that access key as its own credentials file (e.g.
-`~/box/secrets/aws-credentials-eg-levern-dev-infra-automation`), then use
-it — not `hh.com`'s, not your own — for the certificate and DNS steps that
-follow:
+## Permissions and who can do what
+
+Three AWS identities are involved. The split exists so that the credential
+used for unattended deploys can never request certificates, change DNS, or
+touch IAM — a compromised deploy credential should not be able to reroute
+the cooperative's domain or escalate to account control.
+
+| Identity | Credentials | Can do | Used for |
+|---|---|---|---|
+| `hh.com` | `~/box/secrets/aws-credentials-hhcom` | S3, CloudFront, ACM read | `make deploy`, `make deploy-dev`, `infra/` plan+apply |
+| `eg-levern-dev-infra-automation` | `~/box/secrets/aws-credentials-eg-levern` | dev ACM certs (us-east-1), Route 53 on the `eg-levern.de` zone | certificate and DNS changes |
+| Heinrich's own admin identity | Bitwarden, via `scripts/with-bw-admin.sh` | everything | `infra/iam/` plan+apply only |
+
+`hh.com` is deliberately denied `acm:RequestCertificate`, all `route53:*`,
+and all `iam:*`. Do not widen it — use the automation user instead. It does
+have `acm:ListCertificates` and `acm:DescribeCertificate`, which is enough
+to check certificate status.
+
+### Applying `infra/iam/`
+
+Needed only when the automation user's policy changes. Requires Heinrich's
+own identity:
 
 ```sh
-AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern-dev-infra-automation \
-  tofu apply -var dev_manage_certificate=true
-tofu output dev_dns_records_for_heinrich   # prints the validation record
+cd infra/iam
+../scripts/with-bw-admin.sh tofu init
+../scripts/with-bw-admin.sh tofu plan
+../scripts/with-bw-admin.sh tofu apply
 ```
 
-**Route B — create the certificate by hand.** In the ACM console, **region
-us-east-1** (CloudFront only accepts certificates from us-east-1), request a
-public certificate for `dev.eg-levern.de` with **DNS validation**. ACM shows
-one CNAME record to create. Then record the ARN:
+> **The user and its policy already exist in AWS but are not yet in this
+> module's state** — they were created before the state split, and importing
+> them needs `iam:GetUser`, which only Heinrich has. A first `tofu plan`
+> here will therefore propose *creating* them, and an apply would fail with
+> `EntityAlreadyExists`. Import them once, first:
+>
+> ```sh
+> cd infra/iam
+> ../scripts/with-bw-admin.sh tofu import \
+>   aws_iam_user.dev_infra_automation eg-levern-dev-infra-automation
+> ../scripts/with-bw-admin.sh tofu import \
+>   aws_iam_user_policy.dev_infra_automation \
+>   eg-levern-dev-infra-automation:dev-certificate-and-dns
+> ```
+>
+> After the import, `tofu plan` should show one in-place change: the
+> `EgLevernZoneRecords` statement narrows from
+> `arn:aws:route53:::hostedzone/*` to the single
+> `Z04680512670ECR8ZN9DQ` zone. That tightening is the only pending IAM
+> change; nothing depends on it, the automation user works either way.
 
-```sh
-tofu apply -var dev_certificate_arn=arn:aws:acm:us-east-1:710931427457:certificate/XXXX
-```
+Nothing else is blocked on this. `infra/` plans and applies cleanly without
+it.
 
-**Step 3 — create two records** in the `eg-levern.de` hosted zone:
+### DNS — manual, by design
+
+`route53:*` is denied for `hh.com`, so DNS is not in IaC. The
+`eg-levern.de` hosted zone is `Z04680512670ECR8ZN9DQ`. Current dev records,
+both already in place:
 
 | Purpose | Name | Type | Value |
 |---|---|---|---|
-| Certificate validation | `_xxxx.dev.eg-levern.de.` | `CNAME` | `_yyyy.acm-validations.aws.` (exact values from the output/console above) |
-| Site alias | `dev.eg-levern.de.` | `A` — Alias | Alias to CloudFront `d2thkgludxk7z8.cloudfront.net` (hosted zone `Z2FDTNDATAQYW2`, evaluate target health: no) |
+| Site alias | `dev.eg-levern.de.` | `A` — Alias | CloudFront `d2thkgludxk7z8.cloudfront.net`, hosted zone `Z2FDTNDATAQYW2`, evaluate target health: no |
+| Certificate validation | `_e8fb965c1e84b99562a6bf57d3a15763.dev.eg-levern.de.` | `CNAME` | `_e055d8f033054705598b84f4728c15f6.wzccmgtwzk.acm-validations.aws.` |
 
-The alias record can be created immediately; it does not depend on the
-certificate. Until it exists, `https://dev.eg-levern.de/` will not resolve.
+The validation CNAME must stay: ACM re-checks it to keep the certificate
+renewing automatically. Deleting it would eventually break TLS on
+`dev.eg-levern.de`.
 
-**Step 4 — attach the alias** once ACM reports the certificate `ISSUED`
-(usually a few minutes after the validation record propagates):
+Inspect the zone with the automation user:
 
 ```sh
-aws acm describe-certificate --region us-east-1 \
-  --certificate-arn <arn> --query 'Certificate.Status'
-
-tofu apply -var dev_custom_domain_enabled=true   # plus the var from A or B
+export AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern
+aws route53 list-resource-record-sets --hosted-zone-id Z04680512670ECR8ZN9DQ
 ```
 
-CloudFront rejects an alias whose certificate is not yet `ISSUED`, which is
-why this is a separate, explicit switch. To make any of these settings
-permanent rather than passing `-var` each time, put them in
-`infra/terraform.tfvars` (gitignored).
+### Turning the dev custom domain off again
+
+`dev_custom_domain_enabled` detaches the alias and falls back to the
+CloudFront domain. Reversible, dev-only:
+
+```sh
+cd infra && tofu apply -var dev_custom_domain_enabled=false
+```
+
+To make any `-var` setting permanent, put it in `infra/terraform.tfvars`
+(gitignored).
+
+### Rebuilding the dev certificate from scratch
+
+Only if the existing one is ever lost. With the automation user:
+
+```sh
+cd infra
+AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern \
+  tofu apply -var dev_manage_certificate=true -var dev_custom_domain_enabled=false
+tofu output dev_dns_records_for_heinrich   # prints the validation CNAME to create
+```
+
+Create that CNAME in the zone, wait for `ISSUED`, then re-enable the
+domain. Note this leaves the certificate *managed* by `infra/`, unlike the
+current arrangement — update `var.dev_certificate_arn` and set
+`dev_manage_certificate` back to `false` if you want it referenced again.
 
 ## Deploying the site
 
@@ -255,8 +315,9 @@ make deploy-dev   # -> dev.eg-levern.de bucket  + dev distribution
 make deploy       # -> PRODUCTION. Real customers. Ask first.
 ```
 
-While `dev.eg-levern.de` has no DNS, build dev against the CloudFront domain
-so any absolute URLs resolve:
+`make deploy-dev` builds with `--baseURL https://dev.eg-levern.de/`. To
+review on the CloudFront domain instead — e.g. if the custom domain is
+turned off — override it, so absolute URLs in the built site still resolve:
 
 ```sh
 make deploy-dev DEV_BASEURL=https://d2thkgludxk7z8.cloudfront.net/

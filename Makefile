@@ -11,8 +11,8 @@ PROD_DISTRIBUTION = E1RRMW11A78TZM
 DEV_BUCKET        = dev.eg-levern.de
 DEV_DISTRIBUTION  = E1SL20ASNAYEAH
 
-# dev.eg-levern.de has no DNS record yet (Route 53 access is Heinrich's --
-# see infra/README.md). Until it does, review on the CloudFront domain:
+# dev.eg-levern.de is live (DNS alias + ISSUED certificate attached). The
+# CloudFront domain still works as a fallback if DNS is ever in flux:
 #
 #   make deploy-dev DEV_BASEURL=https://d2thkgludxk7z8.cloudfront.net/
 #
@@ -67,6 +67,12 @@ deploy-dev: build-dev
 
 # =============================================================================
 # Infrastructure (OpenTofu) -- see infra/README.md
+#
+# Two root modules with separate state. `infra/` holds the buckets and
+# distributions and is planned/applied with the deploy credentials above.
+# `infra/iam/` holds the dev_infra_automation IAM user and needs Heinrich's
+# own privileged identity, so it deliberately has no target here -- run it
+# via infra/scripts/with-bw-admin.sh.
 # =============================================================================
 
 .PHONY: infra-plan

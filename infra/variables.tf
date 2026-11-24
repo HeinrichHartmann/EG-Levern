@@ -30,10 +30,10 @@ variable "dev_manage_certificate" {
   description = <<-EOT
     Let this configuration request the dev.eg-levern.de certificate.
 
-    Default false because the deploy IAM user is denied
-    acm:RequestCertificate. Set to true once Heinrich grants that
-    permission; OpenTofu will then create the certificate and print its
-    DNS validation record in the `dev_dns_records_for_heinrich` output.
+    Stays false: the certificate already exists, created out of band with
+    the dev_infra_automation user's credentials (see SIG-10), and is
+    referenced by ARN via `dev_certificate_arn` instead. Flipping this to
+    true would request a *second*, redundant certificate.
 
     Mutually exclusive with `dev_certificate_arn`.
   EOT
@@ -43,43 +43,29 @@ variable "dev_manage_certificate" {
 
 variable "dev_certificate_arn" {
   description = <<-EOT
-    ARN of a dev.eg-levern.de certificate created outside this
-    configuration (us-east-1), for when Heinrich requests it by hand in
-    the ACM console instead of granting acm:RequestCertificate.
+    ARN of the dev.eg-levern.de certificate. Created outside this
+    configuration (us-east-1, DNS-validated) and ISSUED, so it is
+    referenced rather than managed -- the same arrangement as
+    `prod_certificate_arn`.
 
     Ignored when `dev_manage_certificate` is true.
   EOT
   type        = string
-  default     = ""
+  default     = "arn:aws:acm:us-east-1:710931427457:certificate/bfa0102d-8a60-4ba9-b346-27b97603b252"
 }
 
 variable "dev_custom_domain_enabled" {
   description = <<-EOT
     Attach `dev_domain` and its certificate to the dev distribution.
 
-    Keep this false until the certificate reports ISSUED. CloudFront
-    rejects an alias whose certificate is still PENDING_VALIDATION, and
-    validation needs a DNS record only Heinrich can create (the deploy
-    IAM user has no Route 53 access -- see infra/README.md).
+    On: the certificate reports ISSUED and the dev.eg-levern.de alias
+    A-record already points at the dev distribution, so CloudFront
+    accepts the alias.
 
-    Has no effect unless a certificate is available via
-    `dev_manage_certificate` or `dev_certificate_arn`. While the alias is
-    off, the dev site is served over its *.cloudfront.net domain.
+    Set it back to false to park the dev environment on its
+    *.cloudfront.net domain again; that is a safe, reversible change (the
+    DNS record simply stops resolving to a distribution that claims it).
   EOT
   type        = bool
-  default     = false
-}
-
-variable "eg_levern_hosted_zone_id" {
-  description = <<-EOT
-    Route 53 hosted zone ID for eg-levern.de, used in iam.tf to scope the
-    dev_infra_automation user's DNS permissions to that one zone. Find it
-    under Route 53 -> Hosted zones in the console.
-
-    Left empty (the policy then falls back to every zone in the account)
-    only because nobody with Route 53 read access has looked it up yet --
-    fill it in as soon as you have it.
-  EOT
-  type        = string
-  default     = ""
+  default     = true
 }
