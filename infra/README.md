@@ -232,14 +232,17 @@ to check certificate status.
 ### Applying `infra/iam/`
 
 Needed only when the automation user's policy changes. Requires Heinrich's
-own identity:
+own identity, fetched from Bitwarden by `infra/scripts/with-bw-admin.sh`
+rather than a credentials file on disk:
 
 ```sh
-cd infra/iam
-../scripts/with-bw-admin.sh tofu init
-../scripts/with-bw-admin.sh tofu plan
-../scripts/with-bw-admin.sh tofu apply
+cd infra/iam && ../scripts/with-bw-admin.sh tofu init   # first run only
+make infra-iam-plan
+make infra-iam-apply
 ```
+
+(`make infra-plan` / `make infra-apply`, by contrast, use the routine
+deploy credentials and never touch this module.)
 
 > **The user and its policy already exist in AWS but are not yet in this
 > module's state** — they were created before the state split. `iam.tf`
