@@ -23,6 +23,31 @@
 # "The access key is not in OpenTofu".
 # =============================================================================
 
+# -----------------------------------------------------------------------------
+# Imports -- the user and its policy already exist
+#
+# Both were created before this module was split out of ../, so they exist in
+# AWS but not in this state file. Importing needs iam:GetUser, which neither
+# hh.com nor the automation user itself has (verified: both get AccessDenied),
+# so it only resolves on Heinrich's first run with his own identity.
+#
+# These are `import` blocks rather than README instructions to run `tofu
+# import` by hand so that first run is a plain `tofu apply`: no resource
+# addresses or import IDs to retype, and no chance of an apply failing with
+# EntityAlreadyExists because the import step was skipped. Same pattern as
+# ../prod.tf. They are inert once the resources are in state.
+# -----------------------------------------------------------------------------
+
+import {
+  to = aws_iam_user.dev_infra_automation
+  id = "eg-levern-dev-infra-automation"
+}
+
+import {
+  to = aws_iam_user_policy.dev_infra_automation
+  id = "eg-levern-dev-infra-automation:dev-certificate-and-dns"
+}
+
 resource "aws_iam_user" "dev_infra_automation" {
   name = "eg-levern-dev-infra-automation"
 

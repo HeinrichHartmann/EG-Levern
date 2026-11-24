@@ -69,8 +69,17 @@ never returns a secret again after creation, so the resource also cannot be
 re-imported if state is ever rebuilt. The key is created by hand in the IAM
 console and saved to `~/box/secrets/aws-credentials-eg-levern`.
 
-The key currently in use is `AKIA2LBWQWCAYYHI24Q7`. To rotate: create a
-second key in the console, update that file, verify with
+This repo is public, so the key ID is not written down here — it goes stale
+on every rotation anyway. To see which key is in use:
+
+```sh
+AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern \
+  aws sts get-access-key-info --access-key-id "$(
+    AWS_SHARED_CREDENTIALS_FILE=~/box/secrets/aws-credentials-eg-levern \
+      aws configure get aws_access_key_id)"
+```
+
+To rotate: create a second key in the console, update that file, verify with
 `aws sts get-caller-identity`, then delete the old key. No OpenTofu involved.
 
 ## Running it
@@ -233,21 +242,16 @@ cd infra/iam
 ```
 
 > **The user and its policy already exist in AWS but are not yet in this
-> module's state** — they were created before the state split, and importing
-> them needs `iam:GetUser`, which only Heinrich has. A first `tofu plan`
-> here will therefore propose *creating* them, and an apply would fail with
-> `EntityAlreadyExists`. Import them once, first:
+> module's state** — they were created before the state split. `iam.tf`
+> carries `import` blocks for both, so the three commands above adopt them
+> automatically; there is nothing extra to run and no import ID to retype.
 >
-> ```sh
-> cd infra/iam
-> ../scripts/with-bw-admin.sh tofu import \
->   aws_iam_user.dev_infra_automation eg-levern-dev-infra-automation
-> ../scripts/with-bw-admin.sh tofu import \
->   aws_iam_user_policy.dev_infra_automation \
->   eg-levern-dev-infra-automation:dev-certificate-and-dns
-> ```
+> Importing needs `iam:GetUser`, which neither `hh.com` nor the automation
+> user itself has (both get `AccessDenied`), so the import only resolves on
+> your first run with your own identity. Until then `tofu plan` in this
+> module fails at the import — that is expected and affects nothing else.
 >
-> After the import, `tofu plan` should show one in-place change: the
+> Once imported, the plan should show one in-place change: the
 > `EgLevernZoneRecords` statement narrows from
 > `arn:aws:route53:::hostedzone/*` to the single
 > `Z04680512670ECR8ZN9DQ` zone. That tightening is the only pending IAM
