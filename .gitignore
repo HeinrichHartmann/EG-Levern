@@ -1,4 +1,14 @@
 .DS_Store
 public/
+public-diff/
 node_modules/
 .direnv/
+
+# OpenTofu: state is kept in S3, never in this (public) repo.
+# .terraform.lock.hcl is intentionally NOT ignored -- it is committed.
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfplan
+infra/*.tfvars
+!infra/*.tfvars.example
