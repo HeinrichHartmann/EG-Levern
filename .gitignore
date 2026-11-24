@@ -1,6 +1,7 @@
 .DS_Store
 public/
 public-diff/
+public-diff-dev/
 node_modules/
 .direnv/
 

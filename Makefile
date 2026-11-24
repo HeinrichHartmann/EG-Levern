@@ -52,7 +52,10 @@ build-dev:
 diff-dev:
 	rm -rf ./public-diff-dev
 	aws s3 cp 's3://$(DEV_BUCKET)' ./public-diff-dev --recursive
-	diff -rq ./public ./public-diff-dev
+#	robots.txt is excluded because it is added at deploy time and so is
+#	always present on the bucket but never in ./public -- without this the
+#	target could never report "no differences".
+	diff -rq --exclude=robots.txt ./public ./public-diff-dev
 
 .PHONY: deploy-dev
 deploy-dev: build-dev
