@@ -1,4 +1,6 @@
-export AWS_SHARED_CREDENTIALS_FILE = ~/box/secrets/aws-credentials-hhcom
+# $(HOME), not ~: make passes the value through literally, and OpenTofu's Go
+# AWS SDK does not expand ~ the way the Python-based aws CLI does.
+export AWS_SHARED_CREDENTIALS_FILE = $(HOME)/box/secrets/aws-credentials-hhcom
 
 # Infrastructure for both environments is defined in ./infra (OpenTofu).
 # These values are the `prod_*` / `dev_*` outputs of that configuration.
