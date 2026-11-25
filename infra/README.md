@@ -213,21 +213,39 @@ curl -s -o /dev/null -w '%{http_code}\n' https://eg-levern.de/robots.txt   # 404
 
 ## Permissions and who can do what
 
-Three AWS identities are involved. The split exists so that the credential
-used for unattended deploys can never request certificates, change DNS, or
-touch IAM — a compromised deploy credential should not be able to reroute
-the cooperative's domain or escalate to account control.
+Three AWS identities are involved. The split exists so that no single
+credential used for routine, unattended work can touch IAM — a compromised
+deploy or automation credential should not be able to escalate to account
+control.
 
 | Identity | Credentials | Can do | Used for |
 |---|---|---|---|
-| `hh.com` | `~/box/secrets/aws-credentials-hhcom` | S3, CloudFront, ACM read | `make deploy`, `make deploy-dev`, `infra/` plan+apply |
-| `eg-levern-dev-infra-automation` | `~/box/secrets/aws-credentials-eg-levern` | dev ACM certs (us-east-1), Route 53 on the `eg-levern.de` zone | certificate and DNS changes |
+| `hh.com` | `~/box/secrets/aws-credentials-hhcom` | S3, CloudFront, ACM read | `infra/` plan+apply only |
+| `eg-levern-dev-infra-automation` | `~/box/secrets/aws-credentials-eg-levern` | dev ACM certs (us-east-1), Route 53 on the `eg-levern.de` zone, S3 + CloudFront invalidation on the two site buckets/distributions | `make deploy`, `make deploy-dev`, `make diff`, `make diff-dev`, certificate and DNS changes |
 | Heinrich's own admin identity | Bitwarden, via `scripts/with-bw-admin.sh` | everything | `infra/iam/` plan+apply only |
 
+**Deploy identity changed on SIG-9, 2026-11-25.** `make deploy` /
+`make deploy-dev` used to run as `hh.com`; they now run as
+`eg-levern-dev-infra-automation` (Heinrich's explicit choice over widening
+`hh.com` or standing up a fourth identity — see `iam.tf`'s header comment
+for the accepted tradeoff). `hh.com` keeps S3/CloudFront/ACM-read only for
+`infra/` plan+apply, which needs broader bucket- and distribution-admin
+permissions the automation user does not have.
+
 `hh.com` is deliberately denied `acm:RequestCertificate`, all `route53:*`,
-and all `iam:*`. Do not widen it — use the automation user instead. It does
-have `acm:ListCertificates` and `acm:DescribeCertificate`, which is enough
-to check certificate status.
+and all `iam:*`. Do not widen it for those — use the automation user
+instead. It does have `acm:ListCertificates` and `acm:DescribeCertificate`,
+which is enough to check certificate status.
+
+> **This policy widening does not take effect until applied.** The S3 +
+> CloudFront statements above are defined in `infra/iam/iam.tf`, but that
+> module only applies with Heinrich's own identity (see below). Until
+> `make infra-iam-apply` has been run with this change in it, the
+> automation user's *actual* AWS policy still lacks S3/CloudFront, and
+> `make deploy` / `make deploy-dev` / `make diff` / `make diff-dev` will
+> fail with `AccessDenied`. No new access key is needed — the existing one
+> in `~/box/secrets/aws-credentials-eg-levern` keeps working once the
+> policy is applied.
 
 ### Applying `infra/iam/`
 
@@ -241,8 +259,8 @@ make infra-iam-plan
 make infra-iam-apply
 ```
 
-(`make infra-plan` / `make infra-apply`, by contrast, use the routine
-deploy credentials and never touch this module.)
+(`make infra-plan` / `make infra-apply`, by contrast, use `hh.com` and
+never touch this module.)
 
 > **The user and its policy already exist in AWS but are not yet in this
 > module's state** — they were created before the state split. `iam.tf`

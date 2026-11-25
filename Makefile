@@ -1,5 +1,18 @@
 export AWS_SHARED_CREDENTIALS_FILE = ~/box/secrets/aws-credentials-hhcom
 
+# Site deploys (deploy/diff and their -dev counterparts) use
+# eg-levern-dev-infra-automation instead of hh.com: that identity already
+# manages DNS/certs for this premise, and per Heinrich's choice on SIG-9 it
+# also holds the S3 + CloudFront permissions `aws s3 cp` and
+# `aws cloudfront create-invalidation` need below (see infra/iam/iam.tf,
+# statements DeploySiteContent / DeployCacheInvalidation). `infra-plan` /
+# `infra-apply` keep using hh.com above -- they need broader
+# bucket/distribution-admin permissions this user does not have.
+#
+# Requires `make infra-iam-apply` to have been run at least once since that
+# policy was added, or these targets fail with AccessDenied.
+DEPLOY_AWS_CREDENTIALS_FILE = ~/box/secrets/aws-credentials-eg-levern
+
 # Infrastructure for both environments is defined in ./infra (OpenTofu).
 # These values are the `prod_*` / `dev_*` outputs of that configuration.
 
@@ -30,12 +43,14 @@ build:
 	hugo --cleanDestinationDir
 
 .PHONY: diff
+diff: export AWS_SHARED_CREDENTIALS_FILE = $(DEPLOY_AWS_CREDENTIALS_FILE)
 diff:
 	rm -rf ./public-diff
 	aws s3 cp 's3://$(PROD_BUCKET)' ./public-diff --recursive
 	diff -rq ./public ./public-diff
 
 .PHONY: deploy
+deploy: export AWS_SHARED_CREDENTIALS_FILE = $(DEPLOY_AWS_CREDENTIALS_FILE)
 deploy: build
 	aws s3 cp ./public 's3://$(PROD_BUCKET)' --recursive
 	aws cloudfront create-invalidation --distribution-id $(PROD_DISTRIBUTION) --paths "/*"
@@ -49,6 +64,7 @@ build-dev:
 	hugo --baseURL $(DEV_BASEURL) --cleanDestinationDir
 
 .PHONY: diff-dev
+diff-dev: export AWS_SHARED_CREDENTIALS_FILE = $(DEPLOY_AWS_CREDENTIALS_FILE)
 diff-dev:
 	rm -rf ./public-diff-dev
 	aws s3 cp 's3://$(DEV_BUCKET)' ./public-diff-dev --recursive
@@ -58,6 +74,7 @@ diff-dev:
 	diff -rq --exclude=robots.txt ./public ./public-diff-dev
 
 .PHONY: deploy-dev
+deploy-dev: export AWS_SHARED_CREDENTIALS_FILE = $(DEPLOY_AWS_CREDENTIALS_FILE)
 deploy-dev: build-dev
 	aws s3 cp ./public 's3://$(DEV_BUCKET)' --recursive
 #	Uploaded after the site so it always wins: dev must stay out of search
