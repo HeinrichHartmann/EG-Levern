@@ -1,6 +1,9 @@
 # =============================================================================
-# IAM -- a dedicated user for this premise (EG-Levern), scoped to exactly
-# what the dev certificate and its DNS records need.
+# IAM -- a dedicated user for this premise (EG-Levern). Originally scoped to
+# exactly what the dev certificate and its DNS records need; now also holds
+# the site-deploy permissions `make deploy` / `make deploy-dev` /
+# `make diff` / `make diff-dev` use, by Heinrich's explicit choice (SIG-9,
+# 2026-11-25) over creating a fourth identity or widening hh.com.
 #
 # hh.com is denied acm:RequestCertificate and all route53:*, and stays that
 # way: hh.com runs unattended deploys, and a principal that can request
@@ -9,10 +12,16 @@
 # using its credentials ever also held iam:CreateRole / iam:PutRolePolicy.
 # Widening hh.com's policy, or routing through hh.com via sts:AssumeRole,
 # both mean sharing this capability with whatever already holds hh.com's
-# credentials (unattended deploys, any agent that runs them). Instead this
-# premise gets its own standing identity, used for nothing else, so the
-# permissions below never have to be shared with a broader-purpose
-# principal.
+# credentials (unattended deploys, any agent that runs them). So this
+# premise keeps its own standing identity for DNS and certificates, rather
+# than folding that into hh.com.
+#
+# Accepted tradeoff: this identity is now also the deploy credential, so a
+# single compromised key can both reroute DNS/certs *and* overwrite the
+# live site content -- deploy is no longer isolated from the DNS/cert
+# escalation path the way it was before. It remains isolated from IAM
+# administration: nothing below touches iam:*, so this user can never
+# widen its own policy or create another one.
 #
 # Applying this configuration is IAM administration: it requires Heinrich's
 # own privileged AWS identity, never hh.com's credentials and not anything
@@ -101,6 +110,38 @@ resource "aws_iam_user_policy" "dev_infra_automation" {
           "route53:GetChange",
         ]
         Resource = "arn:aws:route53:::hostedzone/${var.eg_levern_hosted_zone_id}"
+      },
+      {
+        # What `aws s3 cp ./public s3://...` needs, scoped to exactly the
+        # two site buckets -- not every bucket in the account.
+        Sid    = "DeploySiteContent"
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject",
+          "s3:ListBucket",
+        ]
+        Resource = [
+          "arn:aws:s3:::${var.prod_bucket_name}",
+          "arn:aws:s3:::${var.prod_bucket_name}/*",
+          "arn:aws:s3:::${var.dev_bucket_name}",
+          "arn:aws:s3:::${var.dev_bucket_name}/*",
+        ]
+      },
+      {
+        # What `aws cloudfront create-invalidation` needs after a deploy,
+        # scoped to the two site distributions.
+        Sid    = "DeployCacheInvalidation"
+        Effect = "Allow"
+        Action = [
+          "cloudfront:CreateInvalidation",
+          "cloudfront:GetInvalidation",
+        ]
+        Resource = [
+          "arn:aws:cloudfront::${var.aws_account_id}:distribution/${var.prod_distribution_id}",
+          "arn:aws:cloudfront::${var.aws_account_id}:distribution/${var.dev_distribution_id}",
+        ]
       },
     ]
   })
